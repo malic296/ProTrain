@@ -6,17 +6,27 @@
     <title>ProTrain Registration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lobster&display=swap" rel="stylesheet">
     <script src='main.js'></script>
 </head>
 <body>
+    <header>ProTrain</header>
     <div class="signup">
-        <h2>Register</h2>
+        <h2>Login Form</h2>
+            <div class="login_signup">
+                <div class="login_choose">
+                    <a href="login.php"><input type="submit" value="Login" class = "choosing_but"></a>
+                </div>
+                <div class="signup_choose">
+                    <a href="signup.php"><input type="submit" value="Sign Up" class = "current_page"></a>
+                </div>
+    
+            </div>
         <form action="app.php" method="post" class = "form_signup">
             <div class="signup_uname"><input id="login" name="loginRegister" type="text" placeholder="username" class = "text"> </div>
             <div class="signup_email"><input id="email" name="emailRegister" type="text" placeholder="email" class = "text"> </div>
             <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" placeholder="*********" class = "text"></div>
             <div class="signup_button"><input type="submit" value="Register" name="subReg" class = "submit"></div>
-            <div class="signup_login">Already registered? <br><a href=" login.php"><input type="submit" value="Login" class = "submit_small"></a></div>
         </form>
     </div>
 </body>

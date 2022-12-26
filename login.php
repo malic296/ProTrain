@@ -8,17 +8,27 @@
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lobster&display=swap" rel="stylesheet">
     <script src='main.js'></script>
 </head>
 <body>
+    <header>ProTrain</header>
     <div class="login">
-        <h2>Login</h2>
-        <form action="app.php" method="post" class = form_login>
+        <h2>Login Form</h2>
+            <div class="login_signup">
+                <div class="login_choose">
+                    <a href="login.php"><input type="submit" value="Login" class = "current_page"></a>
+                </div>
+                <div class="signup_choose">
+                    <a href="signup.php"><input type="submit" value="Sign Up" class = "choosing_but"></a>
+                </div>
+    
+            </div>
+        <form action="app.php" method="post" class = form_login>            
             <div class="login_uname"><input type="text" name="login" placeholder="username" class = "text"> </div>
-            <div class="login_passwd"><input type="password" name="password" placeholder="*********" class = "text"> </div><br>
+            <div class="login_passwd"><input type="password" name="password" placeholder="*********" class = "text"> </div><br>                      
             <div class="login_button"><input type="submit" name="subLogin" id="" value="Login" class = "submit"></div>
-            <div class="login_register">Not registered? <br> <a href="signup.php"><input type="submit" value="Sign Up" class = "submit_small"></a></div>
+            
         </form>  
     </div>  
 </body>
