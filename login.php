@@ -16,7 +16,7 @@
         <header>ProTrain</header>
     </div>
     <div class="login">
-        <h2>Login Form</h2>
+        
             <div class="login_signup">
                 <div class="login_choose">
                     <a href="login.php"><input type="submit" value="Login" class = "current_page"></a>
