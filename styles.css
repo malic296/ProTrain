@@ -12,6 +12,9 @@
 
 }
 
+.login_label_passwd{
+    margin-top:25px;
+}
 
 .login_konec{
     display: flex;
@@ -79,6 +82,15 @@
 }
 
 /* styles for signup.php */
+
+.signup_label_passwd{
+    margin-top:25px;
+}
+
+.signup_label_email{
+    margin-top:25px;
+}
+
 .signup_texty{
     display: flex;
     flex-grow: 1;
@@ -126,6 +138,13 @@
 
 /* general styles */
 
+label{
+    font-family:Arial, Helvetica, sans-serif;
+    position:relative;
+    top: 20px;
+}
+
+
 body {
     display: flex;
     flex-direction: column;
@@ -134,6 +153,7 @@ body {
     height: 100vh;
     margin: 0px;
     animation: background 15s infinite;
+    overflow:visible;
 
 }
 
@@ -173,16 +193,13 @@ h2{
     
 }
 
-.text{
-    border-radius: 0px;
-    padding:5px;
-    margin:5px;
-    border: 1px lightslategray;
-    border-style:ridge;
-    
-    
-    
+input{
+    border: none;
+}
 
+.text{
+    border-bottom: 2px solid black;
+    
 }
 
 .submit{
@@ -197,6 +214,11 @@ h2{
     background-color: #51c7a4;
 }
 
+/* focus */
+input[class="text"]{
+    outline: none;
+    
+}
 
 
 /* hover */

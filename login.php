@@ -28,13 +28,15 @@
             </div>
         <form action="app.php" method="post" class = form_login>   
             <div class="login_texty">
-                <div class="login_uname"><input type="text" name="login" placeholder="username" class = "text"> </div>
-                <div class="login_passwd"><input type="password" name="password" placeholder="*********" class = "text"> </div>   
+                <label for="login" class = "login_label_uname">Username:</label>
+                    <div class="login_uname"><input type="text" id = "login" name="login" class = "text"> </div>
+                
+                <label for="password" class = "login_label_passwd">Password:</label>
+                    <div class="login_passwd"><input type="password" id = "password" name="password" class = "text"> </div>   
             </div>   
             <div class="login_konec">            
                 <div class="login_button"><input type="submit" name="subLogin" id="" value="Login" class = "submit"></div>
             </div>
-
         </form>  
     </div>  
 </body>

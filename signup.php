@@ -24,9 +24,12 @@
             </div>
         <form action="app.php" method="post" class = "form_signup">
             <div class="signup_texty">
-                <div class="signup_uname"><input id="login" name="loginRegister" type="text" placeholder="username" class = "text"> </div>
-                <div class="signup_email"><input id="email" name="emailRegister" type="text" placeholder="email" class = "text"> </div>
-                <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" placeholder="*********" class = "text"></div>
+                    <label for="login" class = "signup_label_uname">Username:</label>
+                <div class="signup_uname"><input id="login" name="loginRegister" type="text" class = "text"> </div>
+                    <label for="email" class = "signup_label_email">E-mail:</label>
+                <div class="signup_email"><input id="email" name="emailRegister" type="text" class = "text"> </div>
+                    <label for="password" class = "signup_label_passwd">Password:</label>
+                <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" class = "text"></div>
             </div>
             <div class="signup_konec">
                 <div class="signup_button"><input type="submit" value="Sign Up" name="subReg" class = "submit"></div>
