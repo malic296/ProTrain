@@ -110,7 +110,7 @@ echo "<br><br> formulář: ";
 <?php
 
 //odesílání dat z formuláře do sql
-if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInserts"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInsert"])) {
   //priprava promennych
   $rawDateFrom = htmlentities($_POST['dateFrom']);
   $rawDateTo = htmlentities($_POST['dateTo']);
@@ -121,22 +121,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInserts"])) {
   $rating = get_input($_POST["rating"]);
   $note = get_input($_POST["rating"]);
 
-$conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+  $conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
+  // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
 
-$sql = "INSERT INTO zaznamy (ID_users, DatumDO, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
-VALUES ($DBuserID, '$dateFrom', '$dateTo', $lang, $time, $rating, $note)";
+  $sql = "INSERT INTO zaznamy (ID_users, DatumDO, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
+  VALUES ($DBuserID, '$dateFrom', '$dateTo', $lang, $time, $rating, $note)";
 
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 
-$conn->close();
+  $conn->close();
 }
 
 echo "<br><br>";
