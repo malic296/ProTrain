@@ -12,7 +12,9 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <header>ProTrain</header>
+    <div class="head">
+        <header>ProTrain</header>
+    </div>
     <div class="login">
         <h2>Login Form</h2>
             <div class="login_signup">
@@ -24,11 +26,15 @@
                 </div>
     
             </div>
-        <form action="app.php" method="post" class = form_login>            
-            <div class="login_uname"><input type="text" name="login" placeholder="username" class = "text"> </div>
-            <div class="login_passwd"><input type="password" name="password" placeholder="*********" class = "text"> </div><br>                      
-            <div class="login_button"><input type="submit" name="subLogin" id="" value="Login" class = "submit"></div>
-            
+        <form action="app.php" method="post" class = form_login>   
+            <div class="login_texty">
+                <div class="login_uname"><input type="text" name="login" placeholder="username" class = "text"> </div>
+                <div class="login_passwd"><input type="password" name="password" placeholder="*********" class = "text"> </div>   
+            </div>   
+            <div class="login_konec">            
+                <div class="login_button"><input type="submit" name="subLogin" id="" value="Login" class = "submit"></div>
+            </div>
+
         </form>  
     </div>  
 </body>

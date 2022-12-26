@@ -4,7 +4,21 @@
 /* Styles for login.php */
 
 
+.login_texty{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    flex-direction: column;
 
+}
+
+
+.login_konec{
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-end;
+
+}
 
 .login_signup{
     display: flex;
@@ -52,14 +66,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height:300px;
     
 
-}
-
-
-.login_button{
-    margin-top:50%;
-    
 }
 
 .login_register{
@@ -70,6 +79,22 @@
 }
 
 /* styles for signup.php */
+.signup_texty{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.signup_konec{
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-end;
+
+}
+
 .signup{
     display: flex;
     color: black;
@@ -89,6 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 300px;
 }
 
 .signup_login{
@@ -97,13 +123,6 @@
     align-items: center;
     margin-top: 30px;
 }
-
-.signup_button{
-    margin-top:50%;
-}
-
-
-
 
 /* general styles */
 
@@ -118,10 +137,13 @@ body {
 
 }
 
-header{
+.head{
+    display: flex;
+    justify-content: center;
     position: fixed;
     top:40px;
     font-size: 80px;
+    width: 100%;
     font-family:'Lobster', cursive;
 }
 
@@ -129,7 +151,7 @@ header{
     height: 45px;
     width:100px;
     border: none;
-    animation: barvain 1s normal forwards ease-in-out;
+    animation: barvain 1s normal forwards ease-in;
     border-radius: 0px;
 }
 
@@ -163,7 +185,8 @@ h2{
 .submit{
     border-radius: 0px;
     color:black;
-    border: 1px ridge black;
+    border: none;
+    background-color: white;
     font-size:medium;
     width:100px;
     height: 40px;
@@ -177,15 +200,10 @@ h2{
 
 .submit:hover{
     color:white;
-    background-color: grey;
+    background-color: #43AA8B;
         
 }
 
-.submit_small:hover{
-    color:white;
-    background-color: grey;
-      
-}
 
 /* keyframes */
 
@@ -198,12 +216,31 @@ h2{
     100%{background-color: #DB504A;}
 }
 
-@keyframes barvaout{
-    0%{background-color: #43AA8B;}
-    100%{background-color: white;}
-}
 @keyframes barvain{
     0%{background-color: white;}
     100%{background-color: #43AA8B;}
 }
 
+/* media queries */
+
+@media screen and (max-height: 700px){
+    .head{
+        position: static;
+                
+    }
+}
+
+@media screen and (max-width: 300px){
+   .login{
+        width:min-content;
+        padding:0px;
+   }
+
+   .signup{
+        width:min-content;
+        padding:0px;
+    }
+   .head{
+    font-size: 60px;
+   }
+}

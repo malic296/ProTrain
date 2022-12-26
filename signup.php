@@ -10,7 +10,9 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <header>ProTrain</header>
+    <div class="head">
+        <header>ProTrain</header>
+    </div>
     <div class="signup">
         <h2>Login Form</h2>
             <div class="login_signup">
@@ -23,10 +25,14 @@
     
             </div>
         <form action="app.php" method="post" class = "form_signup">
-            <div class="signup_uname"><input id="login" name="loginRegister" type="text" placeholder="username" class = "text"> </div>
-            <div class="signup_email"><input id="email" name="emailRegister" type="text" placeholder="email" class = "text"> </div>
-            <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" placeholder="*********" class = "text"></div>
-            <div class="signup_button"><input type="submit" value="Register" name="subReg" class = "submit"></div>
+            <div class="signup_texty">
+                <div class="signup_uname"><input id="login" name="loginRegister" type="text" placeholder="username" class = "text"> </div>
+                <div class="signup_email"><input id="email" name="emailRegister" type="text" placeholder="email" class = "text"> </div>
+                <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" placeholder="*********" class = "text"></div>
+            </div>
+            <div class="signup_konec">
+                <div class="signup_button"><input type="submit" value="Sign Up" name="subReg" class = "submit"></div>
+            </div>
         </form>
     </div>
 </body>
