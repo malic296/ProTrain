@@ -27,12 +27,17 @@
     
             </div>
         <form action="app.php" method="post" class = form_login>   
-            <div class="login_texty">
-                <label for="login" class = "login_label_uname">Username:</label>
-                    <div class="login_uname"><input type="text" id = "login" name="login" class = "text"> </div>
+            <div class="login_texty">  
                 
-                <label for="password" class = "login_label_passwd">Password:</label>
-                    <div class="login_passwd"><input type="password" id = "password" name="password" class = "text"> </div>   
+                    <div class="login_uname"><input type="text" id = "login" name="login" class = "text"> 
+                        <label for = "login" class = "label_uname"><span class = "content_uname">Username:</span></label>
+                    </div>
+                
+
+        
+                    <div class="login_passwd"><input type="password" id = "password" name="password" class = "text"> 
+                        <label for = "password" class = "label_passwd"><span class = "content_passwd">Password:</span></label>
+                    </div>   
             </div>   
             <div class="login_konec">            
                 <div class="login_button"><input type="submit" name="subLogin" id="" value="Login" class = "submit"></div>
