@@ -29,14 +29,15 @@
         <form action="app.php" method="post" class = form_login>   
             <div class="login_texty">  
                 
-                    <div class="login_uname"><input type="text" id = "login" name="login" class = "text"> 
-                        <label for = "login" class = "label_uname"><span class = "content_uname">Username:</span></label>
+                    <div class="login_uname">                                                                                                                 
+                        <label for = "login" class = "label_uname">Username:</label>
+                        <input type="text" id = "login" name="login" class = "text" required>                
                     </div>
                 
-
         
-                    <div class="login_passwd"><input type="password" id = "password" name="password" class = "text"> 
-                        <label for = "password" class = "label_passwd"><span class = "content_passwd">Password:</span></label>
+                    <div class="login_passwd"> 
+                        <label for = "password" class = "label_passwd">Password:</label>
+                        <input type="password" id = "password" name="password" class = "text" required>
                     </div>   
             </div>   
             <div class="login_konec">            

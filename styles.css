@@ -4,26 +4,59 @@
 /* Styles for login.php */
 
 .login_uname{
+    display: flex;
     width:100%;
-    position:relative;
-    max-height:50px;
-    overflow: hidden;
+    margin-top:20px;
+    flex-direction: column;
+    
+}
+.login_passwd{
+    display: flex;
+    width:100%;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.label_uname{    
+    transform: translateY(5px);
+}
+
+.label_passwd{    
+    transform: translateY(5px);
+}
+
+.text{
+    border-top:none;
+    border-left:none;
+    border-right:none;  
+    border-bottom:2px solid black;
+    outline:none;
     
 }
 
-.login_texty{
+.text:focus{
+    animation: posun 0.5s normal forwards ease-in-out;
+}
+.text:valid{
+    transform: translateY(10px);
+    border-color: #43AA8B;
+    animation: none;
+}
+
+.login_passwd{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-top:-30px;
-    height:100%;
-    width:100%;
+    flex-grow: 1;
+    
+    
 }
 
 
 
-.login_label_passwd{
-    margin-top:25px;
+.login_texty{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .login_konec{
@@ -96,17 +129,13 @@
 .signup_texty{
     display: flex;
     flex-grow: 1;
-    justify-content: center;
     flex-direction: column;
 
 }
 
-
-.signup_konec{
-    display: flex;
-    flex-grow: 1;
-    align-items: flex-end;
-
+.signup_texty label{
+    margin-top:20px;
+    transform: translateY(10px);
 }
 
 .signup{
@@ -139,7 +168,6 @@
 }
 
 /* general styles */
-
 
 body {
     display: flex;
@@ -229,6 +257,15 @@ h2{
 @keyframes barvain{
     0%{background-color: white;}
     100%{background-color: #43AA8B;}
+}
+
+@keyframes posun {
+    0%{transform: translateY(0px);
+       border-color: black;
+       }
+    100%{transform: translateY(10px);
+         border-color: #43AA8B;
+         }
 }
 
 
