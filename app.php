@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +16,8 @@
 
 <body>
 
-  <?php
+<?php
+
 function get_input($data)
 {
   $data = trim($data);
@@ -34,6 +39,10 @@ if (isset($_POST["subLogin"])) {
   $password = get_input($_POST["password"]);
   echo "user login input: <br>";
   echo "login: $login, password: $password";
+  $_SESSION["login"] = $login;
+  $_SESSION["password"] = $password;
+
+
 } elseif (isset($_POST["subReg"])) {
   //register
   $login = get_input($_POST["loginRegister"]);
@@ -41,6 +50,8 @@ if (isset($_POST["subLogin"])) {
   $email = get_input($_POST["emailRegister"]);
   echo "register input: <br>";
   echo "login: $login, password: $password, email: $email <br><br>";
+  $_SESSION["login"] = $login;
+  $_SESSION["password"] = $password;
 
   $connectDB = new mysqli($DBservername, $DBusername, $DBpassword, $db);
   if ($connectDB->connect_error) {
@@ -65,13 +76,15 @@ if (isset($_POST["subLogin"])) {
   }
 }
 echo "<br><br>";
+
 //connecting to DB
 echo "DB: <br>";
 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sqlComm = "select * from users where login = '$login' "; //prikaz pro SQL
+$session_login = $_SESSION["login"];
+$sqlComm = "select * from users where login = '$session_login'"; //prikaz pro SQL
 $result = $conn->query($sqlComm);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -88,7 +101,7 @@ $conn->close();
 echo "<br>";
 
 //password verification
-if ($password == $DBuserPassword) {
+if ($_SESSION["password"] == $DBuserPassword) {
   echo "login succesful";
 } else {
   die("wrong password");
@@ -98,10 +111,10 @@ echo "<br><br> formulář: ";
 ?>
 <fieldset>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    čas v minutách: <input type="number" name="time" min="0"><br><br>
-    Datum od: <input type="date" name="dateFrom"><br><br>
-    Datum do: <input type="date" name="dateTo"><br><br>
-    Programovací jazyk <select name="jazyk">
+    čas v minutách: <input type="number" name="time" min="0" required><br><br>
+    Datum od: <input type="date" name="dateFrom" required><br><br>
+    Datum do: <input type="date" name="dateTo" required><br><br>
+    Programovací jazyk <select name="jazyk" required>
       <option value="C++">C++</option>
       <option value="C">C</option>
       <option value="C#">C#</option>
@@ -112,12 +125,14 @@ echo "<br><br> formulář: ";
       <option value="Rust">Rust</option>
       <option value="JavaScript">JavaScript</option>
     </select><br><br>
-    Hodnocení 1-5: <input type="number" name="rating" min="1" max="5"><br><br>
-    Poznámka: <textarea name="note"></textarea><br>
-    <input type="submit" name="subInsert">
+    Hodnocení 1-5: <input type="number" name="rating" min="1" max="5" required><br><br>
+    Poznámka: <textarea name="note" required></textarea><br>
+    <input type="submit" name="subInsert" required>
   </form>
 </fieldset>
+
 <?php
+
 
 //odesílání dat z formuláře do sql
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInsert"])) {
@@ -137,8 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInsert"])) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "INSERT INTO zaznamy (ID_users, DatumDO, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
-  VALUES ($DBuserID, '$dateFrom', '$dateTo', $lang, $time, $rating, $note)";
+  $sql = "INSERT INTO zaznamy (ID_users, DatumOD, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
+  VALUES ($DBuserID, '$dateFrom', '$dateTo', '$lang', $time, $rating, '$note')";
 
   if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
