@@ -46,12 +46,22 @@ if (isset($_POST["subLogin"])) {
   if ($connectDB->connect_error) {
     die("Connection Failed : " . $connectDB->connect_error);
   } else {
-    $stmt = $connectDB->prepare("insert into users(login, password, email) values(?, ?, ?)");
-    $stmt->bind_param("sss", $login, $password, $email);
-    $stmt->execute();
-    echo "succes reg";
-    $stmt->close();
-    $connectDB->close();
+    //kontrola jestli uzivatel uz neexistuje
+    $sqlComm = "select * from users where login = '$login' ";
+    $result = $connectDB->query($sqlComm);
+    if ($result->num_rows > 0) {
+      $connectDB->close();
+      die("This username already exist");
+    } else {
+      //vytvoreni uzivatele a zapsani do databaze
+      $stmt = $connectDB->prepare("insert into users(login, password, email) values(?, ?, ?)");
+      $stmt->bind_param("sss", $login, $password, $email);
+      $stmt->execute();
+      echo "succes reg";
+      $stmt->close();
+      $connectDB->close();
+    }
+    
   }
 }
 echo "<br><br>";
