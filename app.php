@@ -36,56 +36,12 @@ $connection->close();
 
   echo "debug window: <br>";
   echo "<fieldset>";
-if (isset($_POST["subLogin"])) {
-  //login
-  $login = get_input($_POST["login"]);
-  $password = get_input($_POST["password"]);
 
-  $secret = passwordEnc($password);
-
-  echo "user login input: <br>";
-  echo "login: $login, password: $secret";
-  $_SESSION["login"] = $login;
-  $_SESSION["password"] = $secret;
-
-} elseif (isset($_POST["subReg"])) {
-  //register
-  $login = get_input($_POST["loginRegister"]);
-  $password = get_input($_POST["passwordRegister"]);
-  $email = get_input($_POST["emailRegister"]);
-  echo "register input: <br>";
-  echo "login: $login, password: $password, email: $email <br><br>";
-
-  $secret = passwordEnc($password);
-
-  $_SESSION["login"] = $login;
-  $_SESSION["password"] = $secret;
-
-  $connectDB = new mysqli($DBservername, $DBusername, $DBpassword, $db);
-  if ($connectDB->connect_error) {
-    die("Connection Failed : " . $connectDB->connect_error);
-  } else {
-    //kontrola jestli uzivatel uz neexistuje
-    $sqlComm = "select * from users where login = '$login' ";
-    $result = $connectDB->query($sqlComm);
-    if ($result->num_rows > 0) {
-      $connectDB->close();
-      die("This username already exist");
-    } else {
-      //vytvoreni uzivatele a zapsani do databaze
-      $stmt = $connectDB->prepare("insert into users(login, password, email) values(?, ?, ?)");
-      $stmt->bind_param("sss", $login, $secret, $email);
-      $stmt->execute();
-      echo "succes reg";
-      $stmt->close();
-      $connectDB->close();
-    }
-  }
-}
+$login = $_SESSION["login"];
+$secret = $_SESSION["password"];
 echo "<br><br>";
 
 //getting info from table users
-echo "DB: <br>";
 include("DBconnection.php");
 if ($connection->connect_error) {
   die("Connection failed: " . $connection->connect_error);
@@ -95,28 +51,23 @@ $sql = "select * from users where login = '$session_login'"; //prikaz pro SQL
 $result = $connection->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    echo "Logged as:<br> id: " . $row["ID_users"] . "<br>login: " . $row["login"] . "<br>password: " . $row["password"] . "<br>email: " . $row["email"] . "<br>";
     $DBuserID = $row["ID_users"];
-    $_SESSION["userID"] = $DBuserID; 
+    $_SESSION["userID"] = $DBuserID;    
     $DBuserLogin = $row["login"];
     $DBuserPassword = $row["password"];
     $DBuserEmail = $row["email"];
   }
 } else {
+    header("Location:login.php");
   die("This user does not exist");
 }
 $connection->close();
-echo "<br>";
 
-//password verification
-if ($_SESSION["password"] == $DBuserPassword) {
-  echo "login succesful";
-} else {
-  die("wrong password");
-}
+echo "$login <br>";
+echo "$secret <br>";
+echo "$DBuserID <br>";
+echo "$DBuserEmail <br>";
 echo "</fieldset>";
-echo "<br><br> formulář: ";
-
 ?>
 <fieldset>
   <form action="recordValidation.php" method="post"> 

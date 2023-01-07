@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +19,15 @@
     <div class="head">
         <header>ProTrain</header>
     </div>
-    <div class="login">
+    
+    <?php
+        if (isset($_GET["error"])) {
+            echo "Incorrect username or password";
+        }
         
+    ?>
+
+    <div class="login">
             <div class="login_signup">
                 <div class="login_choose">
                     <a href="login.php"><input type="submit" value="Login" class = "current_page"></a>
@@ -26,7 +37,7 @@
                 </div>
     
             </div>
-        <form action="app.php" method="post" class = form_login>   
+        <form action="loginValidation.php" method="post" class = form_login>   
             <div class="login_texty">  
                 
                     <div class="login_uname">                                                                                                                 
