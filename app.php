@@ -10,7 +10,7 @@ session_start();
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>DB testing</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='test.css'>
   <script src='main.js'></script>
 </head>
 
@@ -25,11 +25,14 @@ function get_input($data)
   $data = htmlspecialchars($data);
   return $data;
 }
-//DB variables
-$DBservername = "mysql.hostify.cz";
-$DBusername = "db_28564_ProTrain";
-$DBpassword = "ProTrain2022";
-$db = "db_28564_ProTrain";
+function passwordEnc($password) {
+  $pepper = "c1ebvFdxMDrmkOqvxpilFw";
+  $secret= hash_hmac("sha256", $password, $pepper);
+  return $secret;
+}
+
+include("DBconnection.php");
+$connection->close();
 
   echo "debug window: <br>";
   echo "<fieldset>";
@@ -37,11 +40,13 @@ if (isset($_POST["subLogin"])) {
   //login
   $login = get_input($_POST["login"]);
   $password = get_input($_POST["password"]);
-  echo "user login input: <br>";
-  echo "login: $login, password: $password";
-  $_SESSION["login"] = $login;
-  $_SESSION["password"] = $password;
 
+  $secret = passwordEnc($password);
+
+  echo "user login input: <br>";
+  echo "login: $login, password: $secret";
+  $_SESSION["login"] = $login;
+  $_SESSION["password"] = $secret;
 
 } elseif (isset($_POST["subReg"])) {
   //register
@@ -50,8 +55,11 @@ if (isset($_POST["subLogin"])) {
   $email = get_input($_POST["emailRegister"]);
   echo "register input: <br>";
   echo "login: $login, password: $password, email: $email <br><br>";
+
+  $secret = passwordEnc($password);
+
   $_SESSION["login"] = $login;
-  $_SESSION["password"] = $password;
+  $_SESSION["password"] = $secret;
 
   $connectDB = new mysqli($DBservername, $DBusername, $DBpassword, $db);
   if ($connectDB->connect_error) {
@@ -66,30 +74,30 @@ if (isset($_POST["subLogin"])) {
     } else {
       //vytvoreni uzivatele a zapsani do databaze
       $stmt = $connectDB->prepare("insert into users(login, password, email) values(?, ?, ?)");
-      $stmt->bind_param("sss", $login, $password, $email);
+      $stmt->bind_param("sss", $login, $secret, $email);
       $stmt->execute();
       echo "succes reg";
       $stmt->close();
       $connectDB->close();
     }
-    
   }
 }
 echo "<br><br>";
 
-//connecting to DB
+//getting info from table users
 echo "DB: <br>";
-$conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+include("DBconnection.php");
+if ($connection->connect_error) {
+  die("Connection failed: " . $connection->connect_error);
 }
 $session_login = $_SESSION["login"];
-$sqlComm = "select * from users where login = '$session_login'"; //prikaz pro SQL
-$result = $conn->query($sqlComm);
+$sql = "select * from users where login = '$session_login'"; //prikaz pro SQL
+$result = $connection->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     echo "Logged as:<br> id: " . $row["ID_users"] . "<br>login: " . $row["login"] . "<br>password: " . $row["password"] . "<br>email: " . $row["email"] . "<br>";
     $DBuserID = $row["ID_users"];
+    $_SESSION["userID"] = $DBuserID; 
     $DBuserLogin = $row["login"];
     $DBuserPassword = $row["password"];
     $DBuserEmail = $row["email"];
@@ -97,7 +105,7 @@ if ($result->num_rows > 0) {
 } else {
   die("This user does not exist");
 }
-$conn->close();
+$connection->close();
 echo "<br>";
 
 //password verification
@@ -108,9 +116,10 @@ if ($_SESSION["password"] == $DBuserPassword) {
 }
 echo "</fieldset>";
 echo "<br><br> formulář: ";
+
 ?>
 <fieldset>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+  <form action="recordValidation.php" method="post"> 
     čas v minutách: <input type="number" name="time" min="0" required><br><br>
     Datum od: <input type="date" name="dateFrom" required><br><br>
     Datum do: <input type="date" name="dateTo" required><br><br>
@@ -133,54 +142,28 @@ echo "<br><br> formulář: ";
 
 <?php
 
-
-//odesílání dat z formuláře do sql
-if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInsert"])) {
-  //priprava promennych
-  $rawDateFrom = htmlentities($_POST['dateFrom']);
-  $rawDateTo = htmlentities($_POST['dateTo']);
-  $dateFrom = date('Y-m-d', strtotime($rawDateFrom));
-  $dateTo = date('Y-m-d', strtotime($rawDateTo));
-  $lang = get_input($_POST["jazyk"]);
-  $time = get_input($_POST["time"]);
-  $rating = get_input($_POST["rating"]);
-  $note = get_input($_POST["rating"]);
-
-  $conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  $sql = "INSERT INTO zaznamy (ID_users, DatumOD, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
-  VALUES ($DBuserID, '$dateFrom', '$dateTo', '$lang', $time, $rating, '$note')";
-
-  if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-
-  $conn->close();
-}
-
 echo "<br><br>";
-//connecting to DB
+//printing from table zaznamy
 echo "Zaznamy: <br>";
-$conn = new mysqli($DBservername, $DBusername, $DBpassword, $db);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+include("DBconnection.php");
+if ($connection->connect_error) {
+  die("Connection failed: " . $connection->connect_error);
 }
-$sqlComm = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
-$result = $conn->query($sqlComm);
+$sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
+$result = $connection->query($sql);
+echo "<table>";
+echo "<tr> <th>ID_zaznam</th> <th>your ID</th> <th>Datum od</th> <th>Datum do</th> <th>Programovaci jazyk</th> <th>Cas</th> <th>Hodnoceni</th> <th>Poznamka</th> </tr>";
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    echo "id: " . $row["ID_zaznamy"] . " your ID: " . $row["ID_users"] . " Datum od: " . $row["DatumOD"] . " Datum do: " . $row["DatumDO"]. " Programovaci jazyk: " . $row["ProgramJazyk"]. " Cas: " . $row["CasMin"]. " Hodnoceni: " . $row["Hodnoceni"]. " Poznamka: " . $row["Poznamka"] . "<br>";
+    $DBzaznamID = $row["ID_zaznamy"];
+    echo "<tr> <td>$DBzaznamID</td> <td>".$row["ID_users"]."</td> <td>".$row["DatumOD"]."</td> <td>".$row["DatumDO"]."</td> <td>".$row["ProgramJazyk"]."</td> <td>".$row["CasMin"]."</td> <td>".$row["Hodnoceni"]."</td> <td>".$row["Poznamka"]."</td>" . "<td><a href='recordDelete.php?id=$DBzaznamID' class='deleteButton'>Delete</a></td></tr>";
   }
 } else {
-  die("Nemáte žádné záznamy");
+  echo "Nemáte žádné záznamy";
 }
-$conn->close();
+echo "</table>";
+$connection->close();
+
 ?>
 </body>
 </html>

@@ -1,0 +1,17 @@
+table, th, td{
+    border: 2px solid black;
+    padding: 10px;
+}
+table{
+    border-collapse: collapse;
+    width: 50%
+}
+.deleteButton {
+    background: rgb(46, 46, 46);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 5px;
+}
+.deleteButton:hover{
+    background: rgb(165, 0, 0);
+}
