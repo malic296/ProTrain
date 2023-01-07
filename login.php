@@ -56,5 +56,10 @@ session_start();
             </div>
         </form>  
     </div>  
+    <?php
+    
+    $_SESSION["animace"] = 1;
+    $_SESSION["animace2"] = 1;
+    ?>
 </body>
 </html>

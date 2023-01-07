@@ -10,7 +10,10 @@ session_start();
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>DB testing</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' type='text/css' media='screen' href='test.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='app.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <script src='main.js'></script>
 </head>
 
@@ -34,12 +37,10 @@ function passwordEnc($password) {
 include("DBconnection.php");
 $connection->close();
 
-  echo "debug window: <br>";
-  echo "<fieldset>";
 
 $login = $_SESSION["login"];
 $secret = $_SESSION["password"];
-echo "<br><br>";
+
 
 //getting info from table users
 include("DBconnection.php");
@@ -63,58 +64,85 @@ if ($result->num_rows > 0) {
 }
 $connection->close();
 
-echo "$login <br>";
-echo "$secret <br>";
-echo "$DBuserID <br>";
-echo "$DBuserEmail <br>";
-echo "</fieldset>";
-?>
-<fieldset>
-  <form action="recordValidation.php" method="post"> 
-    čas v minutách: <input type="number" name="time" min="0" required><br><br>
-    Datum od: <input type="date" name="dateFrom" required><br><br>
-    Datum do: <input type="date" name="dateTo" required><br><br>
-    Programovací jazyk <select name="jazyk" required>
-      <option value="C++">C++</option>
-      <option value="C">C</option>
-      <option value="C#">C#</option>
-      <option value="Python">Python</option>
-      <option value="HTML">HTML</option>
-      <option value="CSS">CSS</option>
-      <option value="SQL">SQL</option>
-      <option value="Rust">Rust</option>
-      <option value="JavaScript">JavaScript</option>
-    </select><br><br>
-    Hodnocení 1-5: <input type="number" name="rating" min="1" max="5" required><br><br>
-    Poznámka: <textarea name="note" required></textarea><br>
-    <input type="submit" name="subInsert" required>
-  </form>
-</fieldset>
-
-<?php
-
-echo "<br><br>";
-//printing from table zaznamy
-echo "Zaznamy: <br>";
-include("DBconnection.php");
-if ($connection->connect_error) {
-  die("Connection failed: " . $connection->connect_error);
-}
-$sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
-$result = $connection->query($sql);
-echo "<table>";
-echo "<tr> <th>ID_zaznam</th> <th>your ID</th> <th>Datum od</th> <th>Datum do</th> <th>Programovaci jazyk</th> <th>Cas</th> <th>Hodnoceni</th> <th>Poznamka</th> </tr>";
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $DBzaznamID = $row["ID_zaznamy"];
-    echo "<tr> <td>$DBzaznamID</td> <td>".$row["ID_users"]."</td> <td>".$row["DatumOD"]."</td> <td>".$row["DatumDO"]."</td> <td>".$row["ProgramJazyk"]."</td> <td>".$row["CasMin"]."</td> <td>".$row["Hodnoceni"]."</td> <td>".$row["Poznamka"]."</td>" . "<td><a href='recordDelete.php?id=$DBzaznamID' class='deleteButton'>Delete</a></td></tr>";
-  }
-} else {
-  echo "Nemáte žádné záznamy";
-}
-echo "</table>";
-$connection->close();
 
 ?>
+<header>
+<?php 
+//echo "<div class = 'head2'>";
+//echo "$login <br>";
+//echo "$secret <br>";
+//echo "$DBuserID <br>";
+//echo "$DBuserEmail <br>";
+//echo "</fieldset>"; 
+//echo "</div>"
+
+//později dořešit a odkomentovat
+
+
+
+if($_SESSION["animace"] == 1){
+  echo "<div class='head head1'>ProTrain</div>";
+}
+else{
+  echo "<div class='head'>ProTrain</div>";
+}
+
+
+$_SESSION["animace"] = 2;
+?>
+</header>
+
+
+<div class="all">
+    <?php
+      if($_SESSION["animace2"] == 1){
+        echo "<form method = 'post' class = 'navi seen'>";
+      }
+      else{
+        echo "<form method = 'post' class = 'navi'>";
+      }
+      $_SESSION["animace2"] = 2;
+    ?>
+    
+      <div class = "rows">
+        <div class="section"><input type = "submit" name = "recordForm" class ="fill" value = "Vytvoř si svůj Záznam!"></div>
+        <div class="section"><input type = "submit" name = "recordTable" class ="fill" value = "Zobraz si své záznamy!"></div>
+      </div>
+
+      <div class="rows">
+        <div class="section"><input type = "submit" name = "3" class ="fill" value = "3"></div>
+        <div class="section"><input type = "submit" name = "4" class ="fill" value = "4"></div>
+      </div>
+    </form>
+</div>
+<div class="content">
+  
+  <?php
+    
+    if(isset($_POST["recordForm"])){
+      include "recordForm.php";
+    }
+    else if(isset($_POST["recordTable"])){
+      include "recordTable.php";
+    }
+    else if(isset($_POST["3"])){
+      echo "3";
+    }
+    else if(isset($_POST["4"])){
+      echo "4";
+    }
+    else{
+     
+    }
+
+  
+  ?>
+
+
+</div>
+
+
+
+
 </body>
 </html>

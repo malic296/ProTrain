@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.vysledky{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:80px;
+}
+
+.recs{
+    border-bottom: solid black 2px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    
+}
+.head1{
+    animation: title 1s normal forwards ease-in;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    margin-bottom:50px;
+    
+}
+
+
+body{
+    margin:0px;
+    animation: background infinite 15s;
+}
+
+table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    max-width: 700px;
+    border-radius: 2px;
+    box-shadow:5px 5px 20px;
+}
+
+th, tr{
+    border: solid black 2px;
+    width: auto;
+    padding:10px;
+    
+    
+   
+}
+td{
+    height:80px;
+    border: solid black 2px;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.delete_alter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    color:black;
+    flex-grow: 1;
+    height: 40px;
+    width:100px;
+    border: none;
+    font-size:medium;
+    transition: 0.5s;
+    background-color: #51c7a4;
+    margin: 10px;
+    
+}
+.delete_alter:hover{
+    color:white;
+    background-color: #43AA8B;
+        
+}
+
+
+.fill{
+    width: 100%;
+    height:100%;
+    border-radius: 0px;
+    border:none;
+}
+
+.records{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    
+}
+
+label{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.formRecord{
+    justify-content: center;
+    background-color: white;
+    box-shadow:5px 5px 20px;
+    margin:20px;
+    padding:30px;
+}
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width:400px;
+    
+}
+.seen{
+    animation: seen 0.5s normal forwards ease-in;
+}
+
+
+
+.content{
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.all{
+    height:100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.rows{
+    display: flex;
+    flex-direction: row;
+}
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width:200px;
+    margin: 30px;
+    box-shadow:5px 5px 20px;
+    
+}
+
+.navi{
+    width:auto;
+}
+
+.section:hover{
+    animation: shadow_hover 0.5s ease-in-out forwards;
+}
+
+@keyframes seen{
+    0%{opacity:0%;}
+    100%{opacity:100%;}
+}
+
+@keyframes shadow_hover {
+    0%{box-shadow:5px 5px 20px;}
+    100%{box-shadow:10px 15px 20px;}
+}
+
+@keyframes background {
+    0%{background-color: #DB504A;}
+    20%{background-color: #FF6F59 ;}
+    40%{background-color: #51c7a4;}
+    60%{background-color: #43AA8B;}
+    80%{background-color: #433633;}
+    100%{background-color: #DB504A;}
+}
+
+@keyframes title {
+    0%{
+        transform: translateY(40px); 
+        font-size:80px;
+    }
+    100%{
+        transform: translateY(0px); 
+        font-size:60px;
+    }
+}
+
+@media screen and (max-width:500px){
+    body{
+        animation: background 15s infinite;
+    }
+    header{
+        animation: seen 0.5s ease-in-out forwards;
+    }
+    .all{
+        animation: seen 0.5s ease-in-out forwards;
+    }
+    .content{
+        animation: seen 0.5s ease-in-out forwards;
+    }
+    .rows{
+        flex-direction: column;
+
+    }
+    .section{
+        box-shadow: none;
+        border:solid black 2px;
+        margin:0px;
+        width:100vh;
+        height:100px;
+        padding:0px;
+    }
+    .navi{
+        width:100%;
+        margin: 0px;
+    }
+    header{
+        margin-bottom:0px;
+    }
+    form{
+        min-width: auto;
+    }
+
+}

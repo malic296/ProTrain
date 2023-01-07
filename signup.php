@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,5 +47,9 @@
             </div>
         </form>
     </div>
+    <?php
+    $_SESSION["animace"] = 1;
+    $_SESSION["animace2"] = 1;
+    ?>
 </body>
 </html>
