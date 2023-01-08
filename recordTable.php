@@ -19,13 +19,9 @@ if ($result->num_rows > 0) {
     else{echo "<tr class = 'zaznamy white'>";}
     $help ++;
     echo "  <td class = 'first'>".$row["DatumOD"]."</td> 
-
             <td>".$row["DatumDO"]."</td> 
-
             <td class = 'small'>".$row["ProgramJazyk"]."</td> 
-
             <td class = 'small'>".$row["CasMin"]."</td> 
-
             <td class = 'small'>".$row["Hodnoceni"]."</td> 
             
             <td>".$row["Poznamka"]."</td>". 

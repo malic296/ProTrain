@@ -1,7 +1,7 @@
 <?php   
 
       if(isset($_POST["dashboard"])){
-        echo 1;
+        include "dashboard.php";
         echo "<style>
               .fill1{
                 background-color: #0CBB67;                

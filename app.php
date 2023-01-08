@@ -102,7 +102,8 @@ $connection->close();
         </form>
       </div>
       <div class="seg3">
-        <div class = "test"><a href="login.php">Log Out</a></div>
+        <div class = "test1"><a href="login.php">Log Out</a></div>
+        <div class= "test2"><img src="assets/white/person.png" width="15%" class="imageIcon"></div>
       </div>
     </div>
     
@@ -113,10 +114,21 @@ $connection->close();
         include "menuAnimation.php";
       ?>
     </div>
-    <div class="content2">
-      <div class="goal1"><h1>Daily Goal</h1><br>circle</div>
-      <div class="goal2">Latest records</div>
-    </div>
+    <?php
+      if(isset($_POST["allRecs"])){
+
+      }
+      else{
+        echo "
+        <div class='content2'>
+          <div class='goal1'><h1>Daily Goal</h1><br>circle</div>
+          <div class='goal2'>Latest records</div>
+        </div>
+        ";
+      }
+    ?>
+    
+    
 </div>
 
 </div>
