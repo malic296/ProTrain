@@ -1,4 +1,4 @@
-<div class="records seen">
+<div class="records">
   <form action="recordValidation.php" method="post" class = "formRecord"> 
     <label for = "time">Čas v minutách:</label><br> <input class = "input" type="number" name="time" min="0" required><br><br>
     <label for = "dateFrom">Datum Od:</label><br> <input class = "input"  type="date" name="dateFrom" required><br><br>

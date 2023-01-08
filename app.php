@@ -13,7 +13,7 @@ session_start();
   <link rel='stylesheet' type='text/css' media='screen' href='app.css'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script src='main.js'></script>
 </head>
 
@@ -66,8 +66,9 @@ $connection->close();
 
 
 ?>
-<header>
+
 <?php 
+//<header>
 //echo "<div class = 'head2'>";
 //echo "$login <br>";
 //echo "$secret <br>";
@@ -77,67 +78,42 @@ $connection->close();
 //echo "</div>"
 
 //později dořešit a odkomentovat
-
-
-
-if($_SESSION["animace"] == 1){
-  echo "<div class='head head1'>ProTrain</div>";
-}
-else{
-  echo "<div class='head'>ProTrain</div>";
-}
-
-
-$_SESSION["animace"] = 2;
+//</header>
 ?>
-</header>
 
-
-<div class="all">
-    <?php
-      if($_SESSION["animace2"] == 1){
-        echo "<form method = 'post' class = 'navi seen'>";
-      }
-      else{
-        echo "<form method = 'post' class = 'navi'>";
-      }
-      $_SESSION["animace2"] = 2;
-    ?>
+<div class="all">   
+    <div class="menu">
+      <div class="seg1">
+        <h1>ProTrain</h1>       
+        <?php
+          echo $login;
+        ?>        
+      </div>
+      <div class="seg2">
+        <form method = 'post' class = 'navi'>     
+          <div class="section"><input type = "submit" name = "dashboard" class ="fill1" value = "Dashboard"></div>
+          <div class="section"><input type = "submit" name = "newRec" class = "fill2" value = "Create new record"></div>      
+          <div class="section"><input type = "submit" name = "allRecs" class ="fill3" value = "Show my records"></div>
+          <div class="section"><input type = "submit" name = "profile" class ="fill4" value = "Profile"></div> 
+        </form>
+      </div>
+      <div class="seg3">
+        <div class = "test">Log Out</div>
+      </div>
+    </div>
     
-      <div class = "rows">
-        <div class="section"><input type = "submit" name = "recordForm" class ="fill" value = "Vytvoř si svůj Záznam!"></div>
-        <div class="section"><input type = "submit" name = "recordTable" class ="fill" value = "Zobraz si své záznamy!"></div>
-      </div>
-
-      <div class="rows">
-        <div class="section"><input type = "submit" name = "3" class ="fill" value = "3"></div>
-        <div class="section"><input type = "submit" name = "4" class ="fill" value = "4"></div>
-      </div>
-    </form>
-</div>
 <div class="content">
   
-  <?php
-    
-    if(isset($_POST["recordForm"])){
-      include "recordForm.php";
-    }
-    else if(isset($_POST["recordTable"])){
-      include "recordTable.php";
-    }
-    else if(isset($_POST["3"])){
-      echo "3";
-    }
-    else if(isset($_POST["4"])){
-      echo "4";
-    }
-    else{
-     
-    }
-
-  
-  ?>
-
+    <div class="content1">
+      <?php
+        include "menuAnimation.php";
+      ?>
+    </div>
+    <div class="content2">
+      <div class="goal1"><h1>Daily Goal</h1><br>circle</div>
+      <div class="goal2">Latest records</div>
+    </div>
+</div>
 
 </div>
 

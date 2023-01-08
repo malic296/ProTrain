@@ -22,6 +22,7 @@ session_start();
         if (isset($_GET["error"])) {
             echo "This username already exist";
         }
+        //NASTYLOVAT !!!
     ?>
 
     <div class="signup">

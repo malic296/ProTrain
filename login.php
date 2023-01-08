@@ -24,6 +24,7 @@ session_start();
         if (isset($_GET["error"])) {
             echo "Incorrect username or password";
         }
+        //NASTYLOVAT !
         
     ?>
 
