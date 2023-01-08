@@ -249,10 +249,8 @@ label{
     height: 70px;
     width: 250px;
     margin-bottom:5px;
-    
-    
+    background-color: #262A29;
 }
-
 .navi{
     display: flex;
     flex-direction: column;
@@ -304,6 +302,16 @@ label{
     font-size:25px;
     
 }
+.loginName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imageIcon{
+    padding: 10px;
+    pointer-events: none;   
+}
+
 .test{
     width:100%;
     display: flex;
@@ -311,16 +319,15 @@ label{
     justify-content: left;
     text-decoration: none;
     color: white;
-    
 }
 a{
     color:white;
-    
 }
 a:hover{
     background-color: #0CBB67;
     animation: green2 0.5s normal forwards ease-in-out;
 }
+
 @keyframes green2 {
     0%{
         background-color: #303633;

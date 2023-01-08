@@ -84,17 +84,21 @@ $connection->close();
 <div class="all">   
     <div class="menu">
       <div class="seg1">
-        <h1>ProTrain</h1>       
-        <?php
-          echo $login;
-        ?>        
+        <h1>ProTrain</h1>
+          <div class="loginName">
+            <img src="assets/white/person.png" width="10%" class="imageIcon"><img>
+            <?php
+              echo $login;
+            ?>   
+          </div>                
       </div>
       <div class="seg2">
         <form method = 'post' class = 'navi'>     
-          <div class="section"><input type = "submit" name = "dashboard" class ="fill1" value = "Dashboard"></div>
-          <div class="section"><input type = "submit" name = "newRec" class = "fill2" value = "Create new"></div>      
-          <div class="section"><input type = "submit" name = "allRecs" class ="fill3" value = "Show my records"></div>
-          <div class="section"><input type = "submit" name = "profile" class ="fill4" value = "Profile"></div> 
+          <div class="section"><img src="assets/white/display.png" width="15%" class="imageIcon"></img><input type = "submit" name = "dashboard" class ="fill1" value = "Dashboard"></div>
+          <div class="section"><img src="assets/white/playButton.png" width="15%" class="imageIcon"></img><input type = "submit" name = "newRec" class = "fill2" value = "Create new"></div>      
+          <div class="section"><img src="assets/white/displayForm.png" width="15%" class="imageIcon"></img><input type = "submit" name = "allRecs" class ="fill3" value = "Show records"></div>
+          <div class="section"><img src="assets/white/person.png" width="15%" class="imageIcon"></img><input type = "submit" name = "profile" class ="fill4" value = "Profile"></div> 
+
         </form>
       </div>
       <div class="seg3">
