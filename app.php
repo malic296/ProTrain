@@ -92,13 +92,13 @@ $connection->close();
       <div class="seg2">
         <form method = 'post' class = 'navi'>     
           <div class="section"><input type = "submit" name = "dashboard" class ="fill1" value = "Dashboard"></div>
-          <div class="section"><input type = "submit" name = "newRec" class = "fill2" value = "Create new record"></div>      
+          <div class="section"><input type = "submit" name = "newRec" class = "fill2" value = "Create new"></div>      
           <div class="section"><input type = "submit" name = "allRecs" class ="fill3" value = "Show my records"></div>
           <div class="section"><input type = "submit" name = "profile" class ="fill4" value = "Profile"></div> 
         </form>
       </div>
       <div class="seg3">
-        <div class = "test">Log Out</div>
+        <div class = "test"><a href="login.php">Log Out</a></div>
       </div>
     </div>
     

@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
             <td>".$row["Poznamka"]."</td>". 
 
             "<td class = 'last'><a href='recordDelete.php?id=$DBzaznamID' class='delete'>Delete</a>
-            <a href='recordAlter.php?id=$DBzaznamID' class='alter'>Alter</a></td>
+            <a href='recordAlter.php?id=$DBzaznamID' class='alter'>Edit</a></td>
           </tr>";
   }
 } else {
