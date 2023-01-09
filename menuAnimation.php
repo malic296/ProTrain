@@ -3,46 +3,40 @@
       if(isset($_POST["dashboard"])){
         include "dashboard.php";
         echo "<style>
-              .fill1{
+              #tab1{
                 background-color: #0CBB67;                
               }
-              .fill1:hover{
-                animation: none;
-              } 
-              .content1{background-color:transparent;}     
+              .content1{
+                background-color:transparent;
+                box-shadow: none;
+              }     
               </style>";
       }
       else if(isset($_POST["newRec"])){
         include "recordForm.php";
         echo "<style>
-              .fill2{
+              #tab2{
                 background-color: #0CBB67;                
               }
-              .fill2:hover{
-                animation: none;
-              }      
+              
               </style>";
       }
       else if(isset($_POST["allRecs"])){
         include "recordTable.php";
         echo "<style>
-              .fill3{
+              #tab3{
                 background-color: #0CBB67;                
               }
-              .fill3:hover{
-                animation: none;
-              }      
+              
               </style>";
       }
       else if(isset($_POST["profile"])){
         echo 2;
         echo "<style>
-              .fill4{
+              #tab4{
                 background-color: #0CBB67;                
               }
-              .fill4:hover{
-                animation: none;
-              }      
+               
               </style>";
       }
       else{

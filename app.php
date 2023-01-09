@@ -8,13 +8,13 @@ session_start();
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>DB testing</title>
+  <title>ProTrain</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='app.css'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <script src='main.js'></script>
+  <script src="https://kit.fontawesome.com/9d291e9016.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -86,7 +86,8 @@ $connection->close();
       <div class="seg1">
         <h1>ProTrain</h1>
           <div class="loginName">
-            <img src="assets/white/person.png" width="10%" class="imageIcon"><img>
+            <div id="loginIcon"><i class="fa-solid fa-user"></i></div>
+            
             <?php
               echo $login;
             ?>   
@@ -94,16 +95,16 @@ $connection->close();
       </div>
       <div class="seg2">
         <form method = 'post' class = 'navi'>     
-          <div class="section"><img src="assets/white/display.png" width="10%" class="imageIcon"></img><input type = "submit" name = "dashboard" class ="fill1" value = "Dashboard"></div>
-          <div class="section"><img src="assets/white/playButton.png" width="10%" class="imageIcon"></img><input type = "submit" name = "newRec" class = "fill2" value = "Create new"></div>      
-          <div class="section"><img src="assets/white/displayForm.png" width="10%" class="imageIcon"></img><input type = "submit" name = "allRecs" class ="fill3" value = "Show records"></div>
-          <div class="section"><img src="assets/white/person.png" width="10%" class="imageIcon"></img><input type = "submit" name = "profile" class ="fill4" value = "Profile"></div> 
+          <div class="section" id = "tab1"><i class="fa-solid fa-chart-simple"></i><input type = "submit" name = "dashboard" id ="fill1" class = "tab" value = "Dashboard"></div>
+          <div class="section" id = "tab2"><i class="fa-solid fa-plus"></i><input type = "submit" name = "newRec" id = "fill2" class = "tab" value = "Create new"></div>      
+          <div class="section" id = "tab3"><i class="fa-solid fa-table-list"></i><input type = "submit" name = "allRecs" id ="fill3" class = "tab" value = "Show records"></div>
+          <div class="section" id = "tab4"><i class="fa-solid fa-user"></i><input type = "submit" name = "profile" id ="fill4" class = "tab" value = "Profile"></div> 
 
         </form>
       </div>
       <div class="seg3">
         <div class = "test1"><a href="login.php">Log Out</a></div>
-        <div class= "test2"><img src="assets/white/tune.png" width="20%" class="imageIcon"></div>
+        <div class= "test2"><i class="fa-solid fa-sliders"></i></div>
       </div>
     </div>
     

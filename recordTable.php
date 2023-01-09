@@ -9,7 +9,7 @@ if ($connection->connect_error) {
 $sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
 $result = $connection->query($sql);
 echo "<table>";
-echo "<tr class = 'zaznamy white top'><td class = 'first'>Date From</td><td>Date To</td><td class = 'small'>Language</td><td class = 'small'>Spent Time</td><td class = 'small'>Rating</td><td>Note</td><td class = 'last'></td></tr>";
+echo "<tr class = 'zaznamy white top'><td class = 'first'><b>Date From</b></td><td><b>Date To</b></td><td class = 'small'><b>Language</b></td><td class = 'small'><b>Spent Time</b></td><td class = 'small'><b>Rating</b></td><td><b>Note</b></td><td class = 'last'></td></tr>";
 $help = 1;
 if ($result->num_rows > 0) {
  
