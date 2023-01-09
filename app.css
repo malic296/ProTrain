@@ -362,6 +362,7 @@ a{
     align-items: center;
     justify-content: center;
     height:33.3%;
+    font-size: 40px;
 }
 .infoBottom{
     display: flex;

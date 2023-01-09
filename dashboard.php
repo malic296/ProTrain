@@ -21,7 +21,7 @@ $connection->close();
 
         <div class="info">
             <div class="infoTop">Total Time</div>
-            <div class="infoCenter"><img src="assets/grey/clock.png" width="15%" class="imageIcon"></img></div>
+            <div class="infoCenter"><i class="fa-solid fa-clock"></i></div>
             <div class="infoBottom">
                 <?php 
                     if($hours == 1){echo $hours . " Hour";}
@@ -32,13 +32,13 @@ $connection->close();
 
         <div class="info">
             <div class="infoTop">Most Learned</div>
-            <div class="infoCenter"><img src="assets/grey/terminal.png" width="15%" class="imageIcon"></img></div>
+            <div class="infoCenter"><i class="fa-solid fa-code"></i></div>
             <div class="infoBottom"><?php //echo $learned; ?></div>
         </div>
 
         <div class="info">
             <div class="infoTop">Average Rating</div>
-            <div class="infoCenter"><img src="assets/black/star.png" width="15%" class="imageIcon"></img></div>
+            <div class="infoCenter"><i class="fa-solid fa-star"></i></div>
             <div class="infoBottom">3</div>
         </div>
 
