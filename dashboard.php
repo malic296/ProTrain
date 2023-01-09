@@ -19,7 +19,7 @@
         </div>
 
         <div class="info">
-            <div class="infoTop">Average Timing</div>
+            <div class="infoTop">Average Rating</div>
             <div class="infoCenter"><img src="assets/black/star.png" width="15%" class="imageIcon"></img></div>
             <div class="infoBottom">3</div>
         </div>
