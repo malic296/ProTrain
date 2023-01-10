@@ -15,7 +15,7 @@ $result = $connection->query($sql);
             
             while ($row = $result->fetch_assoc()) {
                 $DBzaznamID = $row["ID_zaznamy"];
-                echo "<div class='lastRow'>".$row["ProgramJazyk"]."<i class='fa-solid fa-code'></i> ".$row["CasMin"]."<i class='fa-solid fa-clock'></i> ".$row["Hodnoceni"]."<i class='fa-solid fa-star'></i></div>";
+                echo "<div class='lastRow'> <div class='textRowOne'>".$row["ProgramJazyk"]."<i class='fa-solid fa-code'></i></div><div class='textRowTwo'> ".$row["CasMin"]."<i class='fa-solid fa-clock'></div><div class='textRowThree'></i> ".$row["Hodnoceni"]."<i class='fa-solid fa-star'></i></div></div>";
                 
             }
 

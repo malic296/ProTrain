@@ -426,9 +426,27 @@ h1{
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 3px 3px 13px #878787;
-    min-width: 200px;
-    text-align: center;
-    word-spacing: 10px;
+    min-width: 240px;
+    
+    
+    display: flex;
+    flex-direction: row;
+}
+.textRowOne{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.textRowTwo{
+    display: flex;  
+    align-items: center;
+    margin: auto;
+}
+.textRowThree{
+    display: flex;  
+    align-items: center;
+    margin: auto;
+    
 }
 .goal1{
     display: flex;
