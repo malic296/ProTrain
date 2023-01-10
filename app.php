@@ -117,12 +117,7 @@ $connection->close();
 
       }
       else{
-        echo "
-        <div class='content2'>
-          <div class='goal1'><h1>Daily Goal</h1><br>circle</div>
-          <div class='goal2'>Latest records</div>
-        </div>
-        ";
+        include("dailyGoalTab.php");
       }
     ?>
     

@@ -406,7 +406,7 @@ h1{
     border-radius: 10px;
     margin-left:30px;
     margin-right:30px;
-    box-shadow: 3px 3px 13px #878787
+    box-shadow: 3px 3px 13px #878787;
 }
 .content2{
     display: flex;
@@ -416,10 +416,20 @@ h1{
     background-color: white;
     width:auto;
     min-width:300px;  
-    margin:30px;
-    box-shadow: 3px 3px 13px #878787
+    margin-right:20px;
+    box-shadow: 3px 3px 13px #878787;
 }
-
+.lastRow{
+    background-color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 13px #878787;
+    min-width: 200px;
+    text-align: center;
+    word-spacing: 10px;
+}
 .goal1{
     display: flex;
     flex-grow: 1;
@@ -432,8 +442,9 @@ h1{
 .goal2{
     display: flex;
     flex-grow: 3;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
     margin:20px;
     font-family: 'M PLUS Rounded 1c', cursive;
 }
