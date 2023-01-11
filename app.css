@@ -186,20 +186,97 @@ a{
 .records{
     width:100%;
     display: flex;
+    align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    height: 100%;
     
 }
 
-label{
-    width:100%;
-    display: flex;
-    justify-content: center;
-}
 .formRecord{
+    display: flex;
+    flex-direction: column;
+    width:90%;
+    height: 100%;
     justify-content: center;
+    align-items: center;
     font-size: 25px;
     font-family: 'M PLUS Rounded 1c', cursive;
+}
+.labelinput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width:85%;
+}
+.formlbl{
+    display: flex;
+    font-family: 'Poppins', cursive;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left:20px;
+    height: 80px;
+    align-items: center;
+}
+.formInp{
+    display: flex;
+    height: 80px;
+    font-family: 'Poppins', cursive;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:45%;
+    
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    margin-left: 50px;
+    width:45%;
+}
+
+textarea{
+    max-width:300px;
+}
+.submitForm{
+    margin-top:20px;
+    margin-bottom:100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.input{
+    
+    width:300px;
+}
+
+.submit{
+    border-radius: 0px;
+    color:white;
+    border: none;
+    background-color: white;
+    font-size:medium;
+    width:180px;
+    height: 60px;
+    transition: 0.5s;
+    background-color: #0CBB67;
+    font-family: 'Poppins', cursive;
+}
+
+.submit:hover{
+    color:black;
+    background-color: #51c7a4;
+        
 }
 
 
@@ -285,27 +362,33 @@ label{
 }
 
 .test1{
-    width:100%;
+    width:50%;
     display: flex;
     justify-content: left;
     text-decoration: none;
     color: white;
     transition: 0.5s;
+    height: 50%;
     border-radius: 10px;
 }
 .test1:hover{
     background-color: #0CBB67;
 }
 .test2{
-    width:100%;
+    height: 50%;
+    
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 10px;
+    width:50%;
     display: flex;
-    margin-right:10px;
-    justify-content: right;
+    justify-content: center;
     text-decoration: none;
     color: white;
-    padding-right: 10px;
-    padding-bottom: 10px;
     font-size: 25px;
+}
+.test2:hover{
+    background-color: #0CBB67;
 }
 
 a{
@@ -419,6 +502,10 @@ h1{
     margin-right:20px;
     box-shadow: 3px 3px 13px #878787;
 }
+
+#text{
+    margin-left:5px;
+}
 .lastRow{
     background-color: white;
     font-size: 20px;
@@ -435,17 +522,20 @@ h1{
 .textRowOne{
     display: flex;
     align-items: center;
-    margin: auto;
+    width:33.3%
+    
 }
 .textRowTwo{
     display: flex;  
     align-items: center;
-    margin: auto;
+    justify-content: right;
+    width:33.3%
 }
 .textRowThree{
     display: flex;  
     align-items: center;
-    margin: auto;
+    justify-content: right;
+    width:33.3%
     
 }
 .goal1{

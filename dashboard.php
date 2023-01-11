@@ -6,13 +6,20 @@ $sql = "SELECT SUM(CasMin) as 'cas' FROM zaznamy WHERE ID_users = '$DBuserID';";
 $result = $connection->query($sql);
 $cas = $result->fetch_assoc();
 $hours = round($cas["cas"] / 60, 2);
-$connection->close();
 
-//include("DBconnection.php");
-//$sql = "SELECT ProgramJazyk as 'jazyk' from zaznamy WHERE ID_users = $DBuserID GROUP BY ProgramJazyk ORDER BY COUNT(ProgramJazyk) DESC LIMIT 1;"
-//$result = $connection->query($sql);
-//$language = $result->fetch_assoc();
-//$learned = $language["jazyk"];
+
+$sql = "SELECT ProgramJazyk as 'jazyk' from zaznamy WHERE ID_users = $DBuserID GROUP BY ProgramJazyk ORDER BY COUNT(ProgramJazyk) DESC LIMIT 1;";
+$result = $connection->query($sql);
+$most = $result->fetch_assoc();
+$learned = $most["jazyk"];
+
+
+/*$sql = "SELECT AVG(rating) as 'rating' from zaznamy WHERE ID_users = $DBuserID;";
+$result = $connection->query($sql);
+$rate = $result->fetch_assoc();
+$rating = $rate["rating"];
+*/
+
 ?>
 
 
@@ -33,7 +40,7 @@ $connection->close();
         <div class="info">
             <div class="infoTop">Most Learned</div>
             <div class="infoCenter"><i class="fa-solid fa-code"></i></div>
-            <div class="infoBottom"><?php //echo $learned; ?></div>
+            <div class="infoBottom"><?php echo $learned; ?></div>
         </div>
 
         <div class="info">
@@ -50,5 +57,5 @@ $connection->close();
 </div>
 
 <?php
-//$connection->close();
+$connection->close();
 ?>
