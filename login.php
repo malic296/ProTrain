@@ -20,13 +20,14 @@ session_destroy();
         <header>ProTrain</header>
     </div>
     
-    <?php
-        if (isset($_GET["error"])) {
-            echo "Incorrect username or password";
-        }
-        //NASTYLOVAT !
-        
-    ?>
+        <?php
+            if (isset($_GET["error"])) {
+                echo "<div class='incorrect'>";
+                echo "Incorrect username or password";
+                echo "</div>";
+            }
+                  
+        ?>
 
     <div class="login">
             <div class="login_signup">

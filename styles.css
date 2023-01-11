@@ -114,7 +114,6 @@
     align-items: center;
     height:300px;
     
-
 }
 
 .login_register{
@@ -125,6 +124,22 @@
 }
 
 /* styles for signup.php */
+.incorrect{
+    transform: translateY(5px);
+    opacity: 0%;
+    animation: updraft 0.5s normal forwards ease-in;
+    font-family: 'Kanit', sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    padding:10px;
+    box-shadow:5px 5px 20px;
+}
+@keyframes updraft {   
+    100%{
+        opacity: 100%;
+        transform: translateY(-30px);
+    }
+}
 
 .signup_texty{
     display: flex;
@@ -137,6 +152,7 @@
     margin-top:20px;
     transform: translateY(10px);
 }
+
 
 .signup{
     display: flex;
@@ -229,8 +245,6 @@ h2{
     transition: 0.5s;
     background-color: #51c7a4;
 }
-
-/* focus */
 
 
 

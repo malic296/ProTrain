@@ -27,6 +27,9 @@
               #tab3{
                 background-color: #0CBB67;                
               }
+              .content1{
+                width:100%;
+              }
               
               </style>";
       }
@@ -39,7 +42,18 @@
                
               </style>";
       }
+      else if(isset($_POST["settings"])){
+          include "settings.php";
+      }
       else{
-      
-      } 
+        include "dashboard.php";
+        echo "<style>
+              .content1{
+                background-color: transparent;  
+                box-shadow: none;  
+                         
+              }
+               
+              </style>";
+        } 
       ?>

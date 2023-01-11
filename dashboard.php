@@ -8,17 +8,24 @@ $cas = $result->fetch_assoc();
 $hours = round($cas["cas"] / 60, 2);
 
 
-$sql = "SELECT ProgramJazyk as 'jazyk' from zaznamy WHERE ID_users = $DBuserID GROUP BY ProgramJazyk ORDER BY COUNT(ProgramJazyk) DESC LIMIT 1;";
+$sql = "SELECT ProgramJazyk as 'jazyk', count(ProgramJazyk) as pocet from zaznamy where ID_users = 27 group by ProgramJazyk HAVING pocet = (select max(programCount) as programMax from (select ProgramJazyk, COUNT(ProgramJazyk) as programCount from zaznamy where ID_users = 27 group by ProgramJazyk)t);";
 $result = $connection->query($sql);
-$most = $result->fetch_assoc();
-$learned = $most["jazyk"];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()){
+        $learned[] = $row["jazyk"];
+    }
+}
+else{
+    
+}
 
 
-/*$sql = "SELECT AVG(rating) as 'rating' from zaznamy WHERE ID_users = $DBuserID;";
+
+$sql = "SELECT AVG(Hodnoceni) as 'rating' from zaznamy WHERE ID_users = $DBuserID;";
 $result = $connection->query($sql);
 $rate = $result->fetch_assoc();
 $rating = $rate["rating"];
-*/
+$rating = round($rating, 2);
 
 ?>
 
@@ -40,13 +47,29 @@ $rating = $rate["rating"];
         <div class="info">
             <div class="infoTop">Most Learned</div>
             <div class="infoCenter"><i class="fa-solid fa-code"></i></div>
-            <div class="infoBottom"><?php echo $learned; ?></div>
+            <div class="infoBottom">
+                <?php 
+                $pocet = count($learned); 
+                $help = 0;
+                while ($help < $pocet){
+                    echo $learned[$help];
+                    $help ++;
+                    if($help == $pocet){
+                        echo " ";
+                    }
+                    else{
+                        echo ", ";
+                    }
+                }
+                
+                ?>
+            </div>
         </div>
 
         <div class="info">
             <div class="infoTop">Average Rating</div>
             <div class="infoCenter"><i class="fa-solid fa-star"></i></div>
-            <div class="infoBottom">3</div>
+            <div class="infoBottom"><?php echo $rating;?></div>
         </div>
 
     </div>

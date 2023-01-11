@@ -20,9 +20,11 @@ session_start();
 
     <?php
         if (isset($_GET["error"])) {
-            echo "This username already exist";
+            echo "<div class='incorrect'>";
+            echo "This username is already taken";
+            echo "</div>";
         }
-        //NASTYLOVAT !!!
+        
     ?>
 
     <div class="signup">

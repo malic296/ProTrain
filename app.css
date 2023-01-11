@@ -205,16 +205,26 @@ a{
 }
 .labelinput{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     height: 100%;
+    align-items: center;
+    justify-content: center;
     width:85%;
 }
+.fa-solid{
+    margin-left: 5px;  
+    margin-right: 5px;
+}
+.double{
+    display: flex;
+    flex-direction: row;
+}
+
 .formlbl{
     display: flex;
     font-family: 'Poppins', cursive;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left:20px;
     height: 80px;
     align-items: center;
@@ -223,8 +233,8 @@ a{
     display: flex;
     height: 80px;
     font-family: 'Poppins', cursive;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     align-items: center;
 }
 
@@ -244,20 +254,40 @@ a{
     margin-left: 50px;
     width:45%;
 }
-
+/*SCROLL BAR------------------------------------------*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 textarea{
-    max-width:300px;
+    min-height: 80px;
+    max-width:270px;
+    max-height: 160px;
+    overflow-y:scroll;
 }
-.submitForm{
-    margin-top:20px;
-    margin-bottom:100px;
+.submitForm{ 
     display: flex;
     justify-content: center;
     width: 100%;
 }
 .input{
+    width:150px;
     
-    width:300px;
 }
 
 .submit{
@@ -266,6 +296,7 @@ textarea{
     border: none;
     background-color: white;
     font-size:medium;
+    margin-top: 50px;
     width:180px;
     height: 60px;
     transition: 0.5s;
@@ -337,13 +368,11 @@ textarea{
 
 .seg3{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     height:130px;
     width:100%;
     align-items: flex-end;
     color:white;
-    padding-left: 10px;
-    padding-bottom: 10px;
     font-family: 'Poppins', cursive;
     font-size:23px;
 }
@@ -362,26 +391,27 @@ textarea{
 }
 
 .test1{
-    width:50%;
+    width:50%; 
     display: flex;
-    justify-content: left;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: white;
     transition: 0.5s;
-    height: 50%;
-    border-radius: 10px;
+    height: 50%; 
 }
 .test1:hover{
     background-color: #0CBB67;
 }
 .test2{
-    height: 50%;
-    
+    height: 50%;  
+    width:50%; 
     align-items: center;
     transition: 0.5s;
-    border-radius: 10px;
     width:50%;
     display: flex;
+    background-color: transparent;
+    border: none;
     justify-content: center;
     text-decoration: none;
     color: white;
@@ -431,7 +461,7 @@ a{
     }
 .infoTop{
     display: flex;
-    flex-grow: 1;
+
     align-items: center;
     justify-content: center;
     height:33.3%;
@@ -441,7 +471,7 @@ a{
 }
 .infoCenter{
     display: flex;
-    flex-grow: 1;
+
     align-items: center;
     justify-content: center;
     height:33.3%;
@@ -449,7 +479,6 @@ a{
 }
 .infoBottom{
     display: flex;
-    flex-grow: 1;
     align-items: center;
     justify-content: center;
     height:33.3%;
@@ -485,12 +514,13 @@ h1{
     align-items: center;
     height:98%;
     background-color: white;
-    width:100%;
+    width:80%;
     border-radius: 10px;
     margin-left:30px;
     margin-right:30px;
     box-shadow: 3px 3px 13px #878787;
 }
+
 .content2{
     display: flex;
     flex-direction: column;
@@ -498,7 +528,7 @@ h1{
     border-radius: 10px;
     background-color: white;
     width:auto;
-    min-width:300px;  
+    width:35%;
     margin-right:20px;
     box-shadow: 3px 3px 13px #878787;
 }
@@ -556,3 +586,119 @@ h1{
     margin:20px;
     font-family: 'M PLUS Rounded 1c', cursive;
 }
+
+
+
+
+/*SETTINGS------------------------------------------------------------------------------------------------------------*/
+
+.settings{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    height: 100%;
+    width:100%;
+}
+.settingh{
+    margin-top:20px;
+}
+.settingLight{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width:100%;
+    margin-top:30px;
+}
+.settingGoal{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width:100%;
+    align-items:center;
+    
+}
+.light{
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1;
+    justify-content: left;
+    font-family: 'Poppins', cursive;
+}
+.dark{
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1;
+    justify-content: right;
+    font-family: 'Poppins', cursive;
+}
+.switchDiv{
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
