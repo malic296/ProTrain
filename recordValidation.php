@@ -11,10 +11,8 @@ function get_input($data) {
 
   //priprava promennych
   $userID = $_SESSION["userID"];
-  $rawDateFrom = htmlentities($_POST['dateFrom']);
-  $rawDateTo = htmlentities($_POST['dateTo']);
-  $dateFrom = date('Y-m-d', strtotime($rawDateFrom));
-  $dateTo = date('Y-m-d', strtotime($rawDateTo));
+  $rawDate = htmlentities($_POST['date']);
+  $date = date('Y-m-d', strtotime($rawDate));
   $lang = get_input($_POST["jazyk"]);
   $time = get_input($_POST["time"]);
   $rating = get_input($_POST["rating"]);
@@ -27,8 +25,8 @@ function get_input($data) {
     die("Connection failed: " . $connection->connect_error);
   }
 
-  $sql = "INSERT INTO zaznamy (ID_users, DatumOD, DatumDO, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
-  VALUES ($userID, '$dateFrom', '$dateTo', '$lang', $time, $rating, '$note')";
+  $sql = "INSERT INTO zaznamy (ID_users, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
+  VALUES ($userID, '$date', '$lang', $time, $rating, '$note')";
 
   if ($connection->query($sql) === TRUE) {
     echo "New record created successfully";

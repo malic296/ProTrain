@@ -14,7 +14,9 @@ session_start();
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
   <script src="https://kit.fontawesome.com/9d291e9016.js" crossorigin="anonymous"></script>
+  
 </head>
 
 <body>
@@ -57,6 +59,7 @@ if ($result->num_rows > 0) {
     $DBuserLogin = $row["login"];
     $DBuserPassword = $row["password"];
     $DBuserEmail = $row["email"];
+    $DBDailyGoal = $row["dailyGoal"];
   }
 } else {
     header("Location:login.php");

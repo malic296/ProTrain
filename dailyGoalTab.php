@@ -4,11 +4,31 @@ $sql = "select * from zaznamy where ID_users = $DBuserID ORDER by ID_zaznamy DES
 $result = $connection->query($sql);
 
 
-
+//
+$date = date('Y-m-d');
+$newSql = "SELECT sum(CasMin) as cas FROM `zaznamy` WHERE Datum = '$date' and ID_users = $DBuserID;";
+$newResult = $connection->query($newSql);
+$newResult = $newResult->fetch_assoc();
+$cas = $newResult["cas"]
 ?>
 
 <div class='content2'>
-    <div class='goal1'><h1>Daily Goal</h1><br>circle</div>
+    <div class='goal1'>
+        <h1>Daily Goal</h1>
+        <div class="circular-progress">
+    <span class="progress-value">0%</span>
+</div>
+
+    <?php
+    $dayGoal = $DBDailyGoal;
+    $minutes = $cas;   //x       x = (20/60) * 100   
+    $cislo = ($minutes / $dayGoal) * 100;
+    $cislo = round($cislo);
+    ?>
+
+    
+    </div>
+
     <div class='goal2'>
         <h3>Latest records</h3>
         <?php
@@ -23,3 +43,22 @@ $result = $connection->query($sql);
     </div>
     
 </div>
+<script>
+    let circularProgress = document.querySelector(".circular-progress"),
+        progressValue = document.querySelector(".progress-value");
+
+    let progressStartValue = 0,    
+        progressEndValue = <?php echo $cislo; ?>,    
+        speed = 20;
+
+    let progress = setInterval(() => {
+        progressValue.textContent = `${progressStartValue}%`
+        circularProgress.style.background = `conic-gradient(#51c7a4 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+        if(progressStartValue == progressEndValue){
+            clearInterval(progress);
+        }    
+        if (progress != 0){
+        progressStartValue++;
+        }   
+    }, speed);
+</script>

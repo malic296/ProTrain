@@ -34,7 +34,7 @@
               </style>";
       }
       else if(isset($_POST["profile"])){
-        echo 2;
+        include "userProfile.php";
         echo "<style>
               #tab4{
                 background-color: #0CBB67;                

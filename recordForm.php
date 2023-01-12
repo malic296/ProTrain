@@ -4,8 +4,8 @@
           <div class="double">
             <div class="labels">
                 <div class ="formlbl">Time(mins):</div>
-                <div class="formlbl">Date From:</div>
-                <div class="formlbl">Date To:</div>
+                <div class="formlbl">Date:</div>
+
                 <div class="formlbl">Programming language:</div>
                 <div class="formlbl">Rating:</div>
                 <div class="formlbl">Note:</div>
@@ -14,8 +14,7 @@
         
             <div class="inputs">
                 <div class="formInp"><input class = "input" type="number" name="time" min="0" required></div>
-                <div class="formInp"><input class = "input"  type="date" name="dateFrom" required></div>
-                <div class="formInp"><input class = "input"  type="date" name="dateTo" required></div>
+                <div class="formInp"><input class = "input"  type="date" name="date" required></div>
                 <div class="formInp">
                   <select class = "input"  name="jazyk" required>
                     <option value="C++">C++</option>
