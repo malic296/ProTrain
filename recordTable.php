@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
           </tr>";
   }
 } else {
-  echo "Nemáte žádné záznamy";
+  echo "You don't have any records";
 }
 // Co uvidí user
 

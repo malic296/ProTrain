@@ -21,9 +21,14 @@ $cas = $newResult["cas"]
 
     <?php
     $dayGoal = $DBDailyGoal;
-    $minutes = $cas;   //x       x = (20/60) * 100   
-    $cislo = ($minutes / $dayGoal) * 100;
-    $cislo = round($cislo);
+    $minutes = $cas;
+    if($dayGoal > 0){
+        $cislo = ($minutes / $dayGoal) * 100;
+        $cislo = round($cislo);
+    }else{
+        $cislo = 0;
+    }
+    
     ?>
 
     
@@ -32,13 +37,15 @@ $cas = $newResult["cas"]
     <div class='goal2'>
         <h3>Latest records</h3>
         <?php
-            
+        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $DBzaznamID = $row["ID_zaznamy"];
-                echo "<div class='lastRow'> <div class='textRowOne'>".$row["ProgramJazyk"]."<i class='fa-solid fa-code'></i></div><div class='textRowTwo'> ".$row["CasMin"]."<i class='fa-solid fa-clock'></div><div class='textRowThree'></i> ".$row["Hodnoceni"]."<i class='fa-solid fa-star'></i></div></div>";
-                
-            }
+                echo "<div class='lastRow'> <div class='textRowOne'>" . $row["ProgramJazyk"] . "<i class='fa-solid fa-code'></i></div><div class='textRowTwo'> " . $row["CasMin"] . "<i class='fa-solid fa-clock'></div><div class='textRowThree'></i> " . $row["Hodnoceni"] . "<i class='fa-solid fa-star'></i></div></div>";
 
+            }
+        }else{
+            echo "You don't have any records";
+        }
         ?>
     </div>
     

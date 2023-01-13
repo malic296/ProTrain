@@ -9,7 +9,7 @@ $cas = $result->fetch_assoc();
 $hours = round($cas["cas"] / 60, 2);
 
 
-$sql = "SELECT ProgramJazyk as 'jazyk', count(ProgramJazyk) as pocet from zaznamy where ID_users = 27 group by ProgramJazyk HAVING pocet = (select max(programCount) as programMax from (select ProgramJazyk, COUNT(ProgramJazyk) as programCount from zaznamy where ID_users = 27 group by ProgramJazyk)t);";
+$sql = "SELECT ProgramJazyk as 'jazyk', count(ProgramJazyk) as pocet from zaznamy where ID_users = '$DBuserID' group by ProgramJazyk HAVING pocet = (select max(programCount) as programMax from (select ProgramJazyk, COUNT(ProgramJazyk) as programCount from zaznamy where ID_users = '$DBuserID' group by ProgramJazyk)t);";
 $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()){
@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
     }
 }
 else{
-    
+    $learned[] = "None";
 }
 
 
