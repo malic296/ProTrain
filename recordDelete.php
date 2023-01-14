@@ -1,5 +1,7 @@
 <?php
+session_start();
 //deleting from table zaznamy
+$_SESSION["delete_alter"] = true;
 if(isset($_GET['id']) ) {
     $id = $_GET['id'];
 

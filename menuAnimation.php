@@ -39,6 +39,11 @@
               #tab4{
                 background-color: #0CBB67;                
               }
+              .content1{
+                display:flex;
+                flex-direction: column;
+                
+              }
                
               </style>";
       }

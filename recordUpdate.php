@@ -1,6 +1,7 @@
 <?php
+session_start();
 include("DBconnection.php");
-
+$_SESSION["delete_alter"] = true;
 if(isset($_POST['updatedata']))
 {   
     $rawDate = htmlentities($_POST['date']);

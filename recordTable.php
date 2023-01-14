@@ -15,18 +15,27 @@ if ($result->num_rows > 0) {
  
   while ($row = $result->fetch_assoc()) {
     $DBzaznamID = $row["ID_zaznamy"];
-    if($help % 2 == 1){echo "<tr class = 'zaznamy grey'>";}
-    else{echo "<tr class = 'zaznamy white'>";}
-    $help ++;
+
+
+    if(strlen($row["Poznamka"]) > 10) {
+        $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+    }
+    else{
+        $shortcut = $row["Poznamka"];
+    }   
+
+
+
+    echo "<tr class = 'zaznamy'>";
     echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
             <td class = 'small'>".$row["Datum"]."</td> 
             <td class = 'small'>".$row["ProgramJazyk"]."</td> 
             <td class = 'small'>".$row["CasMin"]."</td> 
             <td class = 'small'>".$row["Hodnoceni"]."</td> 
             
-            <td>".$row["Poznamka"]."</td>". 
+            <td>".$shortcut."</td>". 
 
-            "<td class='last'>
+            "<td class='btns'>
               <a href='recordDelete.php?id=$DBzaznamID' class='delete'>Delete</a> 
               <button type='button' class='alter' id=$DBzaznamID data-toggle='modal' data-target='#studentaddmodal'>Edit</button>
               

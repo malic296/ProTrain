@@ -1,6 +1,7 @@
 <?php
 //inserting into table zaznamy 
 session_start();
+$_SESSION["delete_alter"] = true;
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["subInsert"])) {
 function get_input($data) {
   $data = trim($data);

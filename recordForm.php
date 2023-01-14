@@ -44,9 +44,7 @@
 
 <?php
 
-if(isset($_POST["subInsert"])){
-    echo "Váš záznam se odeslal";
-}
+$_SESSION["delete_alter"] = true;
 
 ?>
 </div>

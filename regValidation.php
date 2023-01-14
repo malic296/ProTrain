@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION["noteCheck"] = false;
+$_SESSION["delete_alter"] = false;
 function get_input($data)
 {
   $data = trim($data);

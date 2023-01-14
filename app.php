@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -117,16 +118,90 @@ $connection->close();
   
     <div class="content1">
       <?php
+      if($_SESSION["noteCheck"] == true){
+        include "recordTable.php";
+      }
+      else if(($_SESSION["delete_alter"] == true)){
+        include "recordTable.php";
+        echo "
+        <style>
+        .content1{
+          width:100%;
+          justify-content:center;
+          background-color:transparent;
+          box-shadow:none;
+          margin-right: 0px;
+          margin-left: 15px;
+        }
+        .content{
+          width:100%;
+          height:100%;
+          
+        }
+        
+        .vysledky{
+          margin-right:10px;
+          width:97%;
+        }
+         
+        </style>";
+        
+      }
+      else{
         include "menuAnimation.php";
+      }
       ?>
     </div>
     <?php
-      if(isset($_POST["allRecs"])){
-
+      if($_SESSION["noteCheck"] == true){
+        echo "<div class = 'content2'>";
+        echo "<text class = 'noteField'>".$_SESSION['note']."</text>";
+        echo "</div>";
+        echo "
+        <style>
+        .content1{
+          width:100%;
+          justify-content:left;
+          background-color:transparent;
+          box-shadow:none;
+          margin-right: 0px;
+          margin-left: 15px;
+        }
+        .content{
+          width:100%;
+          height:100%;
+        }
+        .content2{
+          font-family: 'Poppins', cursive;
+          height:100%;
+          margin-left:10px;
+          padding:10px;
+          width:0%;
+          overflow-wrap: anywhere;
+          animation: bigger 1s normal forwards ease-in-out;
+          position:relative;
+        }
+        .vysledky{
+          margin-right:10px;
+          width:100%;
+          animation: smaller 1s normal forwards ease-in-out;
+        }
+         
+        </style>";
+        }
+      
+      else if(isset($_POST["allRecs"])){
+        
       }
-      else{
+      else if($_SESSION["delete_alter"] == false){
         include("dailyGoalTab.php");
       }
+      else if(isset($_POST["newRec"])){
+        include("dailyGoalTab.php");
+      }
+      else{}
+      $_SESSION["noteCheck"] = false;
+      $_SESSION["delete_alter"] = false;
     ?>
     
     
