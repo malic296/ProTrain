@@ -9,7 +9,7 @@ if ($connection->connect_error) {
 $sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
 $result = $connection->query($sql);
 echo "<table>";
-echo "<tr class = 'zaznamy white top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
+echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
 $help = 1;
 if ($result->num_rows > 0) {
  
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
 
 
 
-    echo "<tr class = 'zaznamy'>";
+    echo "<tr class = 'zaznamy tableRow'>";
     echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
             <td class = 'small'>".$row["Datum"]."</td> 
             <td class = 'small'>".$row["ProgramJazyk"]."</td> 
