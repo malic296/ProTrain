@@ -25,7 +25,7 @@ $cookie_value = true;
 
 
 ?>
-<div class="profile"><i class= "fa-solid fa-circle-user"></i></div>
+<div class="profile"><i class= "fa-solid fa-circle-user profilePic"></i></div>
 <div class="profile">
     <div class="uname">Username : </div>
     <div class="uname"><?php echo " ".$username; ?></div>

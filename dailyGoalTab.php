@@ -26,7 +26,7 @@ $cas = $newResult["cas"]
         $cislo = ($minutes / $dayGoal) * 100;
         $cislo = round($cislo);
     }else{
-        $cislo = 0;
+        $cislo = 100;
     }
     
     ?>

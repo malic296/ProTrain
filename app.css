@@ -560,6 +560,7 @@ h1{
     border-radius: 10px;
     background-color: white;
     width:auto;
+    min-width: 350px;
     margin-right:20px;
     box-shadow: 3px 3px 13px #878787;
     animation: content2 3s normal forwards ease-in-out;
@@ -1069,4 +1070,6 @@ a.close.disabled {
     font-weight: 600;
     color: #000000;
 }
-
+.profilePic{
+    font-size: 100px;
+}

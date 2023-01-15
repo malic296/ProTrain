@@ -14,12 +14,27 @@ function passwordEnc($password) {
   $secret= hash_hmac("sha256", $password, $pepper);
   return $secret;
 }
+
+//email vars
+$subject = "Profile created";
+$message = "Your profile has been successfully created";
+
+$smtpServer = "smtp.gmail.com";
+$smtpName = "ProTrain.Application@gmail.com";
+$smtpPassword = "lkhxfcwneeqdsuyh";
+
+$fromName = "ProTrain";
+
 //register
 $login = get_input($_POST["loginRegister"]);
 $password = get_input($_POST["passwordRegister"]);
 $email = get_input($_POST["emailRegister"]);
 
 $secret = passwordEnc($password);
+
+require "vendor/autoload.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 include("DBconnection.php");
 $connectDB = new mysqli($DBservername, $DBusername, $DBpassword, $db);
@@ -43,8 +58,32 @@ if ($connectDB->connect_error) {
 
     $_SESSION["login"] = $login;
     $_SESSION["password"] = $secret;
+
+    //mail
+    $mail = new PHPMailer(true);
+
+    $mail->isSMTP();
+    $mail->SMTPAuth = true;
+    $mail->Host = $smtpServer;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->Username = $smtpName;
+    $mail->Password = $smtpPassword;
+
+    $mail->setFrom($smtpName, $fromName);
+    $mail->addAddress($email);
+
+    $mail->Subject = $subject;
+    $mail->Body = $message;
+
+    $mail->send();
+
+
     header("Location:app.php");
     exit();
   }
 }
+
+
 ?>
