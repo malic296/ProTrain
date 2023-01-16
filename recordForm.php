@@ -4,30 +4,28 @@
           <div class="double">
             <div class="labels">
                 <div class ="formlbl">Time(mins):</div>
-                <div class="formlbl">Date:</div>
 
                 <div class="formlbl">Programming language:</div>
-                <div class="formlbl">Rating:</div>
+                <div class="formlbl">my language:</div>
+                <div class="formlbl">Rating<i class="fa-solid fa-star"></i>:</div>
                 <div class="formlbl">Note:</div>
 
             </div>
-        
+        <?php 
+          $languages = array("C++", "C", "C#", "Python", "HTML", "CSS", "SQL", "RUST", "JavaScript", "Ruby");
+        ?>
             <div class="inputs">
                 <div class="formInp"><input class = "input" type="number" name="time" min="0" required></div>
-                <div class="formInp"><input class = "input"  type="date" name="date" required></div>
                 <div class="formInp">
                   <select class = "input"  name="jazyk" required>
-                    <option value="C++">C++</option>
-                    <option value="C">C</option>
-                    <option value="C#">C#</option>
-                    <option value="Python">Python</option>
-                    <option value="HTML">HTML</option>
-                    <option value="CSS">CSS</option>
-                    <option value="SQL">SQL</option>
-                    <option value="Rust">Rust</option>
-                    <option value="JavaScript">JavaScript</option>
+                    <?php
+                      foreach($languages as $lang){
+                      echo "<option value='$lang'>$lang</option>";
+                      }
+                    ?>
                   </select>
                 </div>
+                <div class="formInp"><input class = "input"  type="text" name="langElse"></div>
                 <div class="formInp"><input class = "input"  type="number" name="rating" min="1" max="5" required></div>
                 <div class="formInp"><textarea class = "input"  name="note" required maxlength=255></textarea></div>
             </div>

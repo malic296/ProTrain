@@ -7,6 +7,8 @@ $sql = "SELECT SUM(CasMin) as 'cas' FROM zaznamy WHERE ID_users = '$DBuserID';";
 $result = $connection->query($sql);
 $cas = $result->fetch_assoc();
 $hours = round($cas["cas"] / 60, 2);
+$mins = $cas["cas"];
+
 
 
 $sql = "SELECT ProgramJazyk as 'jazyk', count(ProgramJazyk) as pocet from zaznamy where ID_users = '$DBuserID' group by ProgramJazyk HAVING pocet = (select max(programCount) as programMax from (select ProgramJazyk, COUNT(ProgramJazyk) as programCount from zaznamy where ID_users = '$DBuserID' group by ProgramJazyk)t);";
@@ -39,8 +41,18 @@ $rating = round($rating, 2);
             <div class="infoCenter"><i class="fa-solid fa-clock"></i></div>
             <div class="infoBottom">
                 <?php 
-                    if($hours == 1){echo $hours . " Hour";}
-                    else{echo $hours . " Hours";}                    
+                    if($hours < 1){
+                        if ($mins == 1){
+                            echo $mins . " Min";
+                        }else{
+                            echo $mins . " Mins";
+
+                        }
+                    }else{
+                        if($hours == 1){echo $hours . " Hour";}
+                    else{echo $hours . " Hours";}
+                    }
+                                      
                 ?>
             </div>
         </div>

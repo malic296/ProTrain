@@ -11,13 +11,13 @@ function get_input($data) {
 }
 
   //priprava promennych
+  $date = date('Y-m-d');
   $userID = $_SESSION["userID"];
-  $rawDate = htmlentities($_POST['date']);
-  $date = date('Y-m-d', strtotime($rawDate));
-  $lang = get_input($_POST["jazyk"]);
   $time = get_input($_POST["time"]);
   $rating = get_input($_POST["rating"]);
   $note = get_input($_POST["note"]);
+  $lang = get_input($_POST["jazyk"]); 
+
 
   include("DBconnection.php");
 
@@ -25,7 +25,7 @@ function get_input($data) {
   if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
   }
-
+  
   $sql = "INSERT INTO zaznamy (ID_users, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
   VALUES ($userID, '$date', '$lang', $time, $rating, '$note')";
 
