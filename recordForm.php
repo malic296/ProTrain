@@ -11,6 +11,7 @@
                 <div class="formlbl">Note:</div>
 
             </div>
+            <div class="fill"></div>
         <?php 
           $languages = array("C++", "C", "C#", "Python", "HTML", "CSS", "SQL", "RUST", "JavaScript", "Ruby");
         ?>
@@ -27,7 +28,7 @@
                 </div>
                 <div class="formInp"><input class = "input"  type="text" name="langElse"></div>
                 <div class="formInp"><input class = "input"  type="number" name="rating" min="1" max="5" required></div>
-                <div class="formInp"><textarea class = "input"  name="note" required maxlength=255></textarea></div>
+                <div class="formInp"><textarea class = "note"  name="note" required maxlength=255></textarea></div>
             </div>
           </div>
 

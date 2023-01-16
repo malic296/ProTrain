@@ -186,7 +186,7 @@ $connection->close();
           width:100%;
           animation: smaller 1s normal forwards ease-in-out;
         }
-         
+                
         </style>";
         }
       

@@ -10,6 +10,7 @@
     align-items: center;
     height: 100%;
     width:100%;
+    margin: 10px;
 
 }
 
@@ -243,6 +244,10 @@ a{
 .double{
     display: flex;
     flex-direction: row;
+    width: 80%;
+}
+.fill{
+    min-width:10px;
 }
 
 .formlbl{
@@ -250,7 +255,6 @@ a{
     font-family: 'Poppins', cursive;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left:20px;
     height: 80px;
     align-items: center;
 }
@@ -266,18 +270,15 @@ a{
 .inputs{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width:45%;
     
 }
 .labels{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    margin-left: 50px;
-    width:45%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:100%;
 }
 /*SCROLL BAR------------------------------------------*/
 /* width */
@@ -299,12 +300,7 @@ a{
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
-textarea{
-    min-height: 80px;
-    max-width:270px;
-    max-height: 160px;
-    overflow-y:scroll;
-}
+
 .submitForm{ 
     display: flex;
     justify-content: center;
@@ -312,8 +308,89 @@ textarea{
 }
 .input{
     width:150px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid black 2px;
     
 }
+
+.note{
+    overflow: hidden;                   /*Defaultní nastavení notu*/
+    width:150px;
+    min-height: 80px;
+    max-width:270px;
+    max-height: 160px;
+    position: absolute;
+    border: none;
+    border-bottom: 2px solid black;
+    transform: translateY(10px);
+}
+
+
+.note:focus{
+    animation: noteFocus 1s normal forwards ease-in-out;        /*Co se bude dít když je note aktivní (když jsem prvek naklikl a píšu do něj)*/
+    overflow-y: scroll;
+    border:solid #0CBB67 2px;
+    transform: translateY(0px);
+}
+.note:valid{
+    animation: noteFocus 1s normal forwards ease-in-out;        /*Co se bude dít když má v sobě note správnou hodnotu*/
+    overflow-y: scroll;
+    border:solid #0CBB67 2px;
+    transform: translateY(0px);
+    
+}
+.note:hover{
+    animation: noteFocus 1s normal forwards ease-in-out;        /*Co se bude dít když na note najede myš*/
+    overflow-y: scroll;
+    border:solid #0CBB67 2px;
+    transform: translateY(0px);
+}
+@keyframes noteFocus {
+    0%{
+        width:150px;
+        height: 100px;                  /*animace která má svoje keyframes (%), vyvolávám jí pomocí animation:*/
+        border-color: black;
+    }
+    100%{
+        width:220px;
+        height: 100px;
+        border-color: #0CBB67;
+    }
+    
+}
+
+
+@keyframes inputFocus {
+    0%{
+        width:150px;
+        border-color: black;
+    }
+    100%{
+        width:200px;
+        border-color: #0CBB67;
+    }
+    
+}
+
+.input{
+    position: absolute;
+    outline: none;
+}
+
+.input:valid{
+    width:200px;
+    border-color: #0CBB67;
+   
+}
+
+.input:focus{
+    animation: inputFocus 1s normal forwards ease-in-out;
+    border:none;
+    border-bottom: 2px solid #0CBB67;  
+}
+
 
 .submit{
     border-radius: 0px;
@@ -550,6 +627,7 @@ h1{
     margin-right:30px;
     box-shadow: 3px 3px 13px #878787;
     animation: content1 1.5s normal forwards ease-in-out;
+    overflow: hidden;
 }
 
 
@@ -564,6 +642,7 @@ h1{
     margin-right:20px;
     box-shadow: 3px 3px 13px #878787;
     animation: content2 3s normal forwards ease-in-out;
+    overflow: hidden;
 }
 
 #text{
