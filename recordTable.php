@@ -7,6 +7,7 @@ if ($connection->connect_error) {
   die("Connection failed: " . $connection->connect_error);
 }
 $sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
+
 $result = $connection->query($sql);
 echo "<table>";
 echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
@@ -68,16 +69,16 @@ $connection->close();
                 <form action="recordUpdate.php" method="POST">
 
                     <div class="modal-body">
-                        <input type="hidden" name="recordID" id="ID_zaznamy">
+                        <input class = "input" type="hidden" name="recordID" id="ID_zaznamy">
                         
-                        <div class="">
+                        <div class="modalPart">
                             <label> Date</label>
-                            <input type="date" name="date" id="Datum" class="" placeholder="Enter date">
+                            <input  class = "input" type="date" name="date" id="Datum" class="" placeholder="Enter date">
                         </div>
 
-                        <div class="">
+                        <div class="modalPart">
                             <label> Language </label>
-                            <select name="language" id="ProgramJazyk" class="" placeholder="Select language">
+                            <select  class = "input" name="language" id="ProgramJazyk" class="" placeholder="Select language">
                               <option value="C++">C++</option>
                               <option value="C">C</option>
                               <option value="C#">C#</option>
@@ -90,25 +91,25 @@ $connection->close();
                           </select>
                         </div>
 
-                        <div class="">
+                        <div class="modalPart">
                             <label> Spent Time </label>
-                            <input type="number" name="spentTime" id="CasMin" class="" placeholder="Enter time">
+                            <input  class = "input" type="number" name="spentTime" id="CasMin" class="" placeholder="Enter time">
                         </div>
 
-                        <div class="">
+                        <div class="modalPart">
                             <label> Rating </label>
-                            <input type="number" name="rating" id="Hodnoceni" class="" placeholder="Enter rating">
+                            <input  class = "input" type="number" name="rating" id="Hodnoceni" class="" placeholder="Enter rating">
                         </div>
 
-                        <div class="">
+                        <div class="modalPart">
                             <label> Note </label>
-                            <input type="text" name="note" id="Poznamka" class="" placeholder="Write note">
+                            <input  class = "input" type="text" name="note" id="Poznamka" class="" placeholder="Write note">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="" data-dismiss="modal">Close</button>
-                        <button type="submit" name="updatedata" class="">Save</button>
+                        <button type="button" class="submitProf" data-dismiss="modal">Close</button>
+                        <button type="submit" name="updatedata" class="submitProf">Save</button>
                     </div>
                 </form>
             </div>

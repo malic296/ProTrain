@@ -66,23 +66,13 @@ if ($result->num_rows > 0) {
     header("Location:login.php");
   die("This user does not exist");
 }
+if(isset($_POST["save"])){
+  include "profAlterValidation.php";
+}
+
 $connection->close();
 
 
-?>
-
-<?php 
-//<header>
-//echo "<div class = 'head2'>";
-//echo "$login <br>";
-//echo "$secret <br>";
-//echo "$DBuserID <br>";
-//echo "$DBuserEmail <br>";
-//echo "</fieldset>"; 
-//echo "</div>"
-
-//později dořešit a odkomentovat
-//</header>
 ?>
 
 <div class="all">   
@@ -120,6 +110,12 @@ $connection->close();
       <?php
       if($_SESSION["noteCheck"] == true){
         include "recordTable.php";
+      }
+      else if(isset($_POST["enter"])){
+        include "alterCreation.php";
+      }
+      else if(isset($_POST["alter"])){
+        include "UsrPrf.php";
       }
       else if(($_SESSION["delete_alter"] == true)){
         include "recordTable.php";

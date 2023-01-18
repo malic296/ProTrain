@@ -51,17 +51,17 @@ $dailyGoal = $result["dailyGoal"]
                 <form action="DailyGoalUpdate.php" method="POST">
 
                     <div class="modal-body">
-                        <input type="hidden" name="recordID" id="ID_zaznamy">
+                        <input class = "input" type="hidden" name="recordID" id="ID_zaznamy">
 
                         <div class="">
                             <label> New daily goal </label>
-                            <input type="number" name="dailyGoal" id="dailyGoal" class="" placeholder="Enter your new daily goal">
+                            <input class = "input" type="number" name="dailyGoal" id="dailyGoal" placeholder="Enter your new daily goal">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="" data-dismiss="modal">Close</button>
-                        <button type="submit" name="updateGoal" class="">Save</button>
+                        <button type="button" class="submitProf" data-dismiss="modal">Close</button>
+                        <button type="submit" name="updateGoal" class="submitProf">Save</button>
                     </div>
                 </form>
             </div>

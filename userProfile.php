@@ -1,5 +1,4 @@
 <?php
-
 //variables
 $DBuserID = $_SESSION["userID"];
 include "DBconnection.php";
@@ -17,31 +16,18 @@ $sql = "SELECT password from users where ID_users = $DBuserID;";
 $result = $connection->query($sql);
 $passwd = $result->fetch_assoc();
 $password = $passwd["password"];
+$connection->close();
 //variables $password, $email, $username
 
 //creating cookie variables
-$cookie_name = $username;
-$cookie_value = true;
-
-
 ?>
-<div class="profile"><i class= "fa-solid fa-circle-user profilePic"></i></div>
-<div class="profile">
-    <div class="uname">Username : </div>
-    <div class="uname"><?php echo " ".$username; ?></div>
-</div>
 
-<div class="profile">
-    <div class="password">Password : </div>
-    <div class="password">********</div>
-</div>
 
-<div class="profile">
-    <div class="email">E-mail : </div>
-    <div class="email"><?php echo " ".$email; ?></div>
-</div>
-<div class="profileButton">
-    <form method = "post">
-        <button type = "submit" class = "submit" value = "Alter" name = "alter">Alter</button>
-    </form>
+<div class="profile"><i class= "fa-solid fa-circle-user profilePic"></i>
+    <div class="uname"><span class = "prof1">Username : </span><span class = "prof2"><?php echo " ".$username; ?></span></div>
+    <div class="password"><span class = "prof1">Password : </span><span class = "prof2">********</span></div>
+    <div class="email"><span class = "prof1">E-mail : </span><span class = "prof2"><?php echo " ".$email; ?></span></div>
+    <form method = "POST">
+        <input type = "submit" class = "submitProf" name = "alter" value = "Alter">
+    </form>   
 </div>

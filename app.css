@@ -341,12 +341,7 @@ a{
     transform: translateY(0px);
     
 }
-.note:hover{
-    animation: noteFocus 1s normal forwards ease-in-out;        /*Co se bude dít když na note najede myš*/
-    overflow-y: scroll;
-    border:solid #0CBB67 2px;
-    transform: translateY(0px);
-}
+
 @keyframes noteFocus {
     0%{
         width:150px;
@@ -373,7 +368,12 @@ a{
     }
     
 }
-
+.prfInput{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
 .input{
     position: absolute;
     outline: none;
@@ -392,21 +392,7 @@ a{
 }
 
 
-.submit{
-    border-radius: 0px;
-    color:white;
-    border: none;
-    background-color: white;
-    font-size:medium;
-    margin-top: 50px;
-    width:180px;
-    height: 60px;
-    transition: 0.5s;
-    background-color: #0CBB67;
-    font-family: 'Poppins', cursive;
-}
-
-.submit:hover{
+.submitProf:hover{
     color:black;
     background-color: #51c7a4;
         
@@ -698,14 +684,68 @@ h1{
     font-family: 'M PLUS Rounded 1c', cursive;
 }
 
-
+.submitProf{
+    border-radius: 0px;
+    color:white;
+    border: none;
+    background-color: white;
+    font-size:medium;
+    width:180px;
+    height: 60px;
+    transition: 0.5s;
+    background-color: #0CBB67;
+    font-family: 'Poppins', cursive;
+}
+.help2{
+    text-align: center;
+}
+.help{
+    margin-top:80px;
+}
 .profile{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     flex-grow: 1;
     margin:10px;
     font-family: 'Poppins', cursive;
     font-size: 15px;
+    height:98%;
+}
+.usrEnter{
+    text-align: center;
+}
+.prof1{
+    display: flex;
+    width:50%;
+    justify-content: left;
+    margin-left:20%;
+}
+.prof2{
+    display: flex;
+    width:50%;
+    justify-content: right;
+    margin-right:20%;
+}
+.uname{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    margin-bottom: 20px;
+    margin-top:40px;
+}
+.password{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    margin-bottom: 20px;
+}
+.email{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    margin-bottom: 20px;
 }
 .profileIcon{
     height:50px;
