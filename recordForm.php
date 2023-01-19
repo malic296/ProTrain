@@ -33,7 +33,7 @@
           </div>
 
           <div class="submitForm">
-            <input type="submit" name="subInsert" class = "submit" value = "Submit" required>
+            <input type="submit" name="subInsert" class = "submitFormButton" value = "Submit" required>
           </div>
       </div>
       

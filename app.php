@@ -117,7 +117,7 @@ $connection->close();
       else if(isset($_POST["alter"])){
         include "UsrPrf.php";
       }
-      else if(($_SESSION["delete_alter"] == true)){
+      else if(($_SESSION["delete_alter"] == true) or isset($_POST["filter"])){
         include "recordTable.php";
         echo "
         <style>

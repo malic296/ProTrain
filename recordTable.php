@@ -1,4 +1,7 @@
 <div class="vysledky">
+    <form method="POST">
+        <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
+    </form>
 <?php
 
 //printing from table zaznamy
@@ -60,7 +63,7 @@ $connection->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit data </h5>
+                    <h4 class="modal-title" id="exampleModalLabel">Edit data </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

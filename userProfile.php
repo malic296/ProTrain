@@ -28,6 +28,6 @@ $connection->close();
     <div class="password"><span class = "prof1">Password : </span><span class = "prof2">********</span></div>
     <div class="email"><span class = "prof1">E-mail : </span><span class = "prof2"><?php echo " ".$email; ?></span></div>
     <form method = "POST">
-        <input type = "submit" class = "submitProf" name = "alter" value = "Alter">
+        <input type = "submit" class = "submitProf" name = "alter" value = "Change username or password">
     </form>   
 </div>
