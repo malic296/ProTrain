@@ -38,14 +38,11 @@ table{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
     padding: 10px;
     width: 102%;
     height:100%;
-    border-radius: 10px;
     font-family: 'Poppins', cursive;
-    box-shadow: 3px 3px 13px #878787;
-    
+
 }
 td{
     display: flex;
@@ -340,6 +337,9 @@ a{
     background-color: #51c7a4;
         
 }
+.filtrace{
+    font-family: 'Poppins', cursive;
+}
 .input{
     width:150px;
     border-top: none;
@@ -348,7 +348,16 @@ a{
     border-bottom: solid black 2px;
     
 }
-
+.inputFilter{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid black 2px;
+    max-width: 100px;
+}
+.headerFilter{
+    margin-top: 20px;
+}
 .note{
     overflow: hidden;                   /*Defaultní nastavení notu*/
     width:150px;
@@ -647,7 +656,7 @@ h1{
     margin-right:30px;
     box-shadow: 3px 3px 13px #878787;
     animation: content1 1.5s normal forwards ease-in-out;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 

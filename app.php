@@ -124,7 +124,6 @@ $connection->close();
         .content1{
           width:100%;
           justify-content:center;
-          background-color:transparent;
           box-shadow:none;
           margin-right: 0px;
           margin-left: 15px;
@@ -158,7 +157,7 @@ $connection->close();
         .content1{
           width:100%;
           justify-content:left;
-          background-color:transparent;
+          
           box-shadow:none;
           margin-right: 0px;
           margin-left: 15px;

@@ -1,58 +1,225 @@
-<div class="vysledky">
-    <form method="POST">
-        <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
-    </form>
-<?php
-
-//printing from table zaznamy
+<?php 
 include("DBconnection.php");
 if ($connection->connect_error) {
   die("Connection failed: " . $connection->connect_error);
 }
-$sql = "select * from zaznamy where ID_users = $DBuserID "; //prikaz pro SQL
-
-$result = $connection->query($sql);
-echo "<table>";
-echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
-$help = 1;
-if ($result->num_rows > 0) {
- 
-  while ($row = $result->fetch_assoc()) {
-    $DBzaznamID = $row["ID_zaznamy"];
+$sql = "SELECT DISTINCT ProgramJazyk from zaznamy where ID_users = $DBuserID";
+$run = mysqli_query($connection, $sql);
 
 
-    if(strlen($row["Poznamka"]) > 10) {
-        $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+
+?>
+
+
+<div class="filtrace">
+    <form method="POST" action="">
+        <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
+        <?php
+            if (mysqli_num_rows($run) > 0) {
+                ?>
+                <div class="headerFilter">Filter by language</div>
+                <?php
+                foreach($run as $jazykList){
+                    $checked = [];
+                    if (isset($_POST["languages"])){
+                        $checked = $_POST["languages"];
+                    }
+                    
+                    ?>
+
+                    <div>
+                        <input type="checkbox" name="languages[]" value="<?= $jazykList["ProgramJazyk"]; ?>"
+                            <?php if (in_array($jazykList["ProgramJazyk"], $checked)){echo "checked";}?>
+                        />
+                        <?= $jazykList["ProgramJazyk"]; ?>
+                    </div>    
+                    <?php
+                }?>
+                <div class="headerFilter">Filter by date</div>
+                
+                <?php 
+                    
+                ?>
+                <div>
+                    <input type="date" name="filterDateFrom" class="inputFilter" <?php if(isset($_POST["filterDateFrom"])){$dateFrom = $_POST["filterDateFrom"]; echo" value='$dateFrom'"; } ?> > From
+                </div>
+                <div>
+                    <input type="date" name="filterDateTo" class="inputFilter" <?php if(isset($_POST["filterDateTo"])){$dateTo = $_POST["filterDateTo"]; echo" value='$dateTo'"; } ?> > To
+                </div>
+                <div class="headerFilter">Filter by rating</div>
+                <div>
+                    <input type="number" name="ratingFrom" class="inputFilter" min="1" max="5" <?php if(isset($_POST["ratingFrom"])){$ratingFrom = $_POST["ratingFrom"]; echo" value='$ratingFrom'"; } ?> > From
+                </div>
+                <div>
+                    <input type="number" name="ratingTo" class="inputFilter" min="1" max="5" <?php if(isset($_POST["ratingTo"])){$ratingTo = $_POST["ratingTo"]; echo" value='$ratingTo'"; } ?> > To
+                </div>
+                <div class="headerFilter">Filter by time</div>
+                <div>
+                    <input type="number" name="timeFrom" class="inputFilter" min="1"  <?php if(isset($_POST["timeFrom"])){$timeFrom = $_POST["timeFrom"]; echo" value='$timeFrom'"; } ?> > From   
+                </div>
+                <div>
+                    <input type="number" name="timeTo" class="inputFilter" min="0" <?php if(isset($_POST["timeTo"])){$timeTo = $_POST["timeTo"]; echo" value='$timeTo'"; } ?> > To
+                </div>
+                    
+                
+            <?php
+            } else {
+            echo "You don't have any records";
+            }
+        ?>
+    </form>
+</div>
+
+<div class="vysledky">   
+<?php
+
+//printing from table zaznamy
+if(isset($_POST["languages"])){
+    $langChecked = [];
+    $langChecked = $_POST["languages"];
+    echo "<table>";
+    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
+    foreach($langChecked as $oneLang){
+        if (isset($_POST["filterDateFrom"]) and isset($_POST["filterDateTo"])){
+            $dateFrom = $_POST["filterDateFrom"];
+            $dateTo = $_POST["filterDateTo"];
+            if($dateFrom != "" and $dateTo != ""){
+                $sql = "SELECT * from zaznamy where ID_users = $DBuserID and Datum BETWEEN '$dateFrom' and '$dateTo' and ProgramJazyk IN ('$oneLang')";
+            }elseif($dateFrom != ""){
+                $sql = "SELECT * from zaznamy where ID_users = $DBuserID and Datum >= '$dateFrom' and ProgramJazyk IN ('$oneLang')";
+            }elseif($dateTo != ""){
+                $sql = "SELECT * from zaznamy where ID_users = $DBuserID and Datum <= '$dateTo' and ProgramJazyk IN ('$oneLang')";
+            }else{
+                $sql = "SELECT * from zaznamy where ID_users = $DBuserID and ProgramJazyk IN ('$oneLang')";
+            }  
+        }
+        if(isset($_POST["ratingFrom"]) or (isset($_POST["ratingTo"]))){
+            $ratingFrom = $_POST["ratingFrom"];
+            $ratingTo = $_POST["ratingTo"];
+            if($ratingFrom != "" and $ratingTo != ""){
+                $sql = $sql . " AND Hodnoceni BETWEEN $ratingFrom and $ratingTo";
+            }elseif($ratingFrom != ""){
+                $sql = $sql . " AND Hodnoceni > $ratingFrom";
+            }elseif($ratingTo != ""){
+                $sql = $sql . " AND Hodnoceni < $ratingTo";
+            } 
+        }
+
+        if(isset($_POST["timeFrom"]) or (isset($_POST["timeTo"]))){
+            $timeFrom = $_POST["timeFrom"];
+            $timeTo = $_POST["timeTo"];
+            if($timeFrom != "" and $timeTo != ""){
+                $sql = $sql . " AND CasMin BETWEEN $timeFrom and $timeTo";
+            }elseif($timeFrom != ""){
+                $sql = $sql . " AND CasMin > $timeFrom";
+            }elseif($timeTo != ""){
+                $sql = $sql . " AND CasMin < $timeTo";
+            } 
+        }
+
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $DBzaznamID = $row["ID_zaznamy"];
+    
+            if(strlen($row["Poznamka"]) > 10) {
+                $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+            }
+            else{
+                $shortcut = $row["Poznamka"];
+            }   
+            echo "<tr class = 'zaznamy tableRow'>";
+            echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
+                    <td class = 'small'>".$row["Datum"]."</td> 
+                    <td class = 'small'>".$row["ProgramJazyk"]."</td> 
+                    <td class = 'small'>".$row["CasMin"]."</td> 
+                    <td class = 'small'>".$row["Hodnoceni"]."</td> 
+                    
+                    <td>".$shortcut."</td>". 
+    
+                    "<td class='btns'>
+                    <a href='recordDelete.php?id=$DBzaznamID' class='delete'>Delete</a> 
+                    <button type='button' class='alter' id=$DBzaznamID data-toggle='modal' data-target='#studentaddmodal'>Edit</button>
+                    
+                    </td>
+                </tr>";
+        }
     }
-    else{
-        $shortcut = $row["Poznamka"];
-    }   
+    
+}else{
+    if (isset($_POST["filterDateFrom"]) and isset($_POST["filterDateTo"])){
+        $dateFrom = $_POST["filterDateFrom"];
+        $dateTo = $_POST["filterDateTo"];
+        $sql = "SELECT * from zaznamy where ID_users = $DBuserID";
+        if($dateFrom != "" and $dateTo != ""){
+            $sql = $sql . " and Datum BETWEEN '$dateFrom' and '$dateTo'";
+        }elseif($dateFrom != ""){
+            $sql = " and Datum >= '$dateFrom'";
+        }elseif($dateTo != ""){
+            $sql = $sql . " and Datum <= '$dateTo'";
+        }else{
+            $sql = "SELECT * from zaznamy where ID_users = $DBuserID ";
+        }
+    }else{
+        $sql = "SELECT * from zaznamy where ID_users = $DBuserID ";
+    }
+    if(isset($_POST["ratingFrom"]) or (isset($_POST["ratingTo"]))){
+        $ratingFrom = $_POST["ratingFrom"];
+        $ratingTo = $_POST["ratingTo"];
+        if($ratingFrom != "" and $ratingTo != ""){
+            $sql = $sql . " AND Hodnoceni BETWEEN $ratingFrom and $ratingTo";
+        }elseif($ratingFrom != ""){
+            $sql = $sql . " AND Hodnoceni > $ratingFrom";
+        }elseif($ratingTo != ""){
+            $sql = $sql . " AND Hodnoceni < $ratingTo";
+        } 
+    }
+    if(isset($_POST["timeFrom"]) or (isset($_POST["timeTo"]))){
+        $timeFrom = $_POST["timeFrom"];
+        $timeTo = $_POST["timeTo"];
+        if($timeFrom != "" and $timeTo != ""){
+            $sql = $sql . " AND CasMin BETWEEN $timeFrom and $timeTo";
+        }elseif($timeFrom != ""){
+            $sql = $sql . " AND CasMin > $timeFrom";
+        }elseif($timeTo != ""){
+            $sql = $sql . " AND CasMin < $timeTo";
+        } 
+    }
+    $result = $connection->query($sql);
+    echo "<table>";
+    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
 
+    if ($result->num_rows > 0) {
+        
+    while ($row = $result->fetch_assoc()) {
+        $DBzaznamID = $row["ID_zaznamy"];
 
+        if(strlen($row["Poznamka"]) > 10) {
+            $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+        }
+        else{
+            $shortcut = $row["Poznamka"];
+        }   
+        echo "<tr class = 'zaznamy tableRow'>";
+        echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
+                <td class = 'small'>".$row["Datum"]."</td> 
+                <td class = 'small'>".$row["ProgramJazyk"]."</td> 
+                <td class = 'small'>".$row["CasMin"]."</td> 
+                <td class = 'small'>".$row["Hodnoceni"]."</td> 
+                
+                <td>".$shortcut."</td>". 
 
-    echo "<tr class = 'zaznamy tableRow'>";
-    echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
-            <td class = 'small'>".$row["Datum"]."</td> 
-            <td class = 'small'>".$row["ProgramJazyk"]."</td> 
-            <td class = 'small'>".$row["CasMin"]."</td> 
-            <td class = 'small'>".$row["Hodnoceni"]."</td> 
-            
-            <td>".$shortcut."</td>". 
-
-            "<td class='btns'>
-              <a href='recordDelete.php?id=$DBzaznamID' class='delete'>Delete</a> 
-              <button type='button' class='alter' id=$DBzaznamID data-toggle='modal' data-target='#studentaddmodal'>Edit</button>
-              
-            </td>
-          </tr>";
-  }
-} else {
-  echo "You don't have any records";
+                "<td class='btns'>
+                <a href='recordDelete.php?id=$DBzaznamID' class='delete'>Delete</a> 
+                <button type='button' class='alter' id=$DBzaznamID data-toggle='modal' data-target='#studentaddmodal'>Edit</button>
+                
+                </td>
+            </tr>";
+    }
+    } else {
+    echo "You don't have any records";
+    }
 }
 // Co uvidí user
-
-
-
 echo "</table>";
 $connection->close();
 
