@@ -150,7 +150,7 @@ while ($row = $result->fetch_assoc()) {
         data: {
             labels: months,
             datasets: [{
-                label: 'My First Dataset',
+                label: 'Number of lessons in different months',
                 data: <?php echo json_encode($monthsData); ?>,
                 backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

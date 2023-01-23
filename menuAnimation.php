@@ -49,6 +49,11 @@
       }
       else if(isset($_POST["settings"])){
           include "settings.php";
+          echo "<style>
+              .test2{
+                background-color: #0CBB67;                
+              }
+              </style>";
       }
       else{
         include "dashboard.php";
