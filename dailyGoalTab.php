@@ -33,9 +33,9 @@ $cas = $newResult["cas"]
 
     
     </div>
-
+    <h3>Latest records</h3>
     <div class='goal2'>
-        <h3>Latest records</h3>
+        
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

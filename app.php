@@ -106,10 +106,37 @@ $connection->close();
     
 <div class="content">
   
-    <div class="content1">
+  <div class="content1">
       <?php
       if($_SESSION["noteCheck"] == true){
         include "recordTable.php";
+        echo "
+        <style>
+        .content1{
+          width:100%;
+          display:flex;
+          flex-direction:row;
+          border-radius:0px;
+          background-color: #DEDDDD;
+          box-shadow:none;
+        }
+        .filtrace{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          box-shadow: 3px 3px 13px #878787;
+          margin-left: 10px;
+          border-radius:10px;
+          background-color:white;
+
+        }
+        .vysledky{
+          box-shadow: 3px 3px 13px #878787;
+          border-radius:10px;
+          background-color:white;
+        }
+         
+        </style>";
       }
       else if(isset($_POST["enter"])){
         include "alterCreation.php";
@@ -123,25 +150,32 @@ $connection->close();
         <style>
         .content1{
           width:100%;
-          justify-content:center;
+          display:flex;
+          flex-direction:row;
+          border-radius:0px;
+          background-color: #DEDDDD;
           box-shadow:none;
-          margin-right: 0px;
-          margin-left: 15px;
         }
-        .content{
-          width:100%;
-          height:100%;
-          
+        .filtrace{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          box-shadow: 3px 3px 13px #878787;
+          margin-left: 10px;
+          border-radius:10px;
+          background-color:white;
+
         }
-        
         .vysledky{
-          margin-right:10px;
-          width:97%;
+          box-shadow: 3px 3px 13px #878787;
+          border-radius:10px;
+          background-color:white;
         }
          
         </style>";
         
       }
+      
       else{
         include "menuAnimation.php";
       }
@@ -162,10 +196,7 @@ $connection->close();
           margin-right: 0px;
           margin-left: 15px;
         }
-        .content{
-          width:100%;
-          height:100%;
-        }
+
         .content2{
           font-family: 'Poppins', cursive;
           height:100%;
@@ -187,6 +218,9 @@ $connection->close();
       
       else if(isset($_POST["allRecs"])){
         
+      }
+      else if(isset($_POST["filter"])){
+
       }
       else if($_SESSION["delete_alter"] == false){
         include("dailyGoalTab.php");

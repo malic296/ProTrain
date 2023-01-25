@@ -29,6 +29,27 @@
               }
               .content1{
                 width:100%;
+                display:flex;
+                flex-direction:row;
+                border-radius:0px;
+                background-color: #DEDDDD;
+                box-shadow:none;
+              }
+
+              .filtrace{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                box-shadow: 3px 3px 13px #878787;
+                margin-left: 10px;
+                border-radius:10px;
+                background-color:white;
+
+              }
+              .vysledky{
+                box-shadow: 3px 3px 13px #878787;
+                border-radius:10px;
+                background-color:white;
               }
               
               </style>";

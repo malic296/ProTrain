@@ -13,7 +13,7 @@ $run = mysqli_query($connection, $sql);
 
 <div class="filtrace">
     <form method="POST" action="">
-        <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
+        
         <?php
             if (mysqli_num_rows($run) > 0) {
                 ?>
@@ -67,9 +67,10 @@ $run = mysqli_query($connection, $sql);
             echo "You don't have any records";
             }
         ?>
+        <br>
+        <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
     </form>
 </div>
-
 <div class="vysledky">   
 <?php
 
@@ -121,8 +122,8 @@ if(isset($_POST["languages"])){
         while ($row = $result->fetch_assoc()) {
             $DBzaznamID = $row["ID_zaznamy"];
     
-            if(strlen($row["Poznamka"]) > 10) {
-                $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+            if(strlen($row["Poznamka"]) > 5) {
+                $shortcut = substr($row["Poznamka"], 0, 5) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
             }
             else{
                 $shortcut = $row["Poznamka"];
@@ -193,8 +194,8 @@ if(isset($_POST["languages"])){
     while ($row = $result->fetch_assoc()) {
         $DBzaznamID = $row["ID_zaznamy"];
 
-        if(strlen($row["Poznamka"]) > 10) {
-            $shortcut = substr($row["Poznamka"], 0, 10) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
+        if(strlen($row["Poznamka"]) > 5) {
+            $shortcut = substr($row["Poznamka"], 0, 5) . "<form action = 'showNote.php' method='post'><button name = 'threeDots' type = 'submit' class = 'noteShow' value = '".$row['Poznamka']."'>...</button></form>";
         }
         else{
             $shortcut = $row["Poznamka"];
