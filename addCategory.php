@@ -2,6 +2,7 @@
 session_start();
 include("DBconnection.php");
 
+
 if(isset($_POST['addCategorySubmit']))
 {   
     $id = $_SESSION["userID"];
@@ -22,6 +23,30 @@ if(isset($_POST['addCategorySubmit']))
     else
     {
         //echo '<script> alert("Data Not Updated"); </script>';
-    } 
+    }
+} elseif (isset($_POST['addCategoryDelete'])) {$DBuserID = $_SESSION["userID"];
+    $id = $_SESSION["userID"];
+    $nameCategory = $_POST['deleteCategory'];
+    $sql = "SELECT * from Kategorie WHERE ID_users = '$DBuserID';";
+    $result = $connection->query($sql);
+
+    $idList = [];
+    $nameList = [];
+    $colorList = [];
+    $popisList = [];
+    $index = 0;
+    while ($row = $result->fetch_assoc()) {
+        $idList[$index] = $row["ID_Kategorie"];
+        $nameList[$index] = $row["nazev"];
+        $colorList[$index] = $row["barva"];
+        $popisList[$index] = $row["popis"];
+        $index++;
+    }
+    $key = array_search($nameCategory, $nameList);
+    $idCategory = $idList[$key];
+
+    $sql = mysqli_query($connection, "UPDATE zaznamy SET ID_Kategorie = NULL where ID_Kategorie = '$idCategory'");
+    $sql = mysqli_query($connection, "DELETE FROM Kategorie WHERE ID_Kategorie = '$idCategory'");
+    header("Location:app.php");
 }
 ?>

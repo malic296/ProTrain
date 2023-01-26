@@ -750,6 +750,22 @@ h1{
     background-color: #0CBB67;
     font-family: 'Poppins', cursive;
 }
+.addCategoryDelete{
+    border-radius: 0px;
+    color:white;
+    border: none;
+    background-color: white;
+    font-size:medium;
+    width:150px;
+    height: 40px;
+    transition: 0.5s;
+    background-color: #dd2d21;
+    font-family: 'Poppins', cursive;
+}
+.addCategoryDelete:hover{
+    color:white;
+    background-color: #961c13;
+}
 .help2{
     text-align: center;
 }

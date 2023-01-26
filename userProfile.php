@@ -31,3 +31,9 @@ $connection->close();
         <input type = "submit" class = "submitProf" name = "alter" value = "Change username or password">
     </form>   
 </div>
+<div>
+    <form action="deleteUser.php" method="POST">
+        <input type = "submit" class = "addCategoryDelete" name = "deleteProfile" value = "Delete profile">
+
+    </form>
+</div>

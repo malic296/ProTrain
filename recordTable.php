@@ -3,8 +3,28 @@ include("DBconnection.php");
 if ($connection->connect_error) {
   die("Connection failed: " . $connection->connect_error);
 }
+
+$DBuserID = $_SESSION["userID"];
+$sql = "SELECT * from Kategorie WHERE ID_users = '$DBuserID';";
+$result = $connection->query($sql);
+$nameList = [];
+$colorList = [];
+$popisList = [];
+$idList = [];
+$index = 0;
+while ($row = $result->fetch_assoc()) {
+    $idList[$index] = $row["ID_Kategorie"];
+    $nameList[$index] = $row["nazev"];
+    $colorList[$index] = $row["barva"];
+    $popisList[$index] = $row["popis"];
+    $index++;
+}
+
+
 $sql = "SELECT DISTINCT ProgramJazyk from zaznamy where ID_users = $DBuserID";
 $run = mysqli_query($connection, $sql);
+
+$languages = array("C++", "C", "C#", "Python", "HTML", "CSS", "SQL", "RUST", "JavaScript", "Ruby", "PHP");
 
 
 
@@ -15,31 +35,59 @@ $run = mysqli_query($connection, $sql);
     <form method="POST" action="">
         
         <?php
-            if (mysqli_num_rows($run) > 0) {
-                ?>
+        if (mysqli_num_rows($run) > 0) {
+            ?>
                 <div class="headerFilter">Filter by language</div>
                 <?php
-                foreach($run as $jazykList){
+                foreach ($run as $jazykList) {
                     $checked = [];
-                    if (isset($_POST["languages"])){
+                    if (isset($_POST["languages"])) {
                         $checked = $_POST["languages"];
                     }
-                    
+
                     ?>
 
                     <div>
                         <input type="checkbox" name="languages[]" value="<?= $jazykList["ProgramJazyk"]; ?>"
-                            <?php if (in_array($jazykList["ProgramJazyk"], $checked)){echo "checked";}?>
+                            <?php if (in_array($jazykList["ProgramJazyk"], $checked)) {
+                                echo "checked";
+                            } ?>
                         />
                         <?= $jazykList["ProgramJazyk"]; ?>
                     </div>    
                     <?php
-                }?>
-                <div class="headerFilter">Filter by date</div>
-                
-                <?php 
-                    
+                }
                 ?>
+                
+                <?php
+                $sql = "SELECT DISTINCT nazev from kategorie where ID_users = $DBuserID";
+                $run = mysqli_query($connection, $sql);
+                if (mysqli_num_rows($run) > 0) {
+                    ?><div class=""headerFilter>Filter by category</div>
+                    <?php
+                    foreach ($run as $categoryList) {
+                        $checkedCategory = [];
+                        if (isset($_POST["categories"])) {
+                            $checkedCategory = $_POST["categories"];
+                        }
+
+                        ?>
+    
+                        <div>
+                            <input type="checkbox" name="categories[]" value="<?= $categoryList["nazev"]; ?>"
+                                <?php if (in_array($categoryList["nazev"], $checkedCategory)) {
+                                    echo "checked";
+                                } ?>
+                            />
+                            <?= $categoryList["nazev"]; ?>
+                        </div>    
+                        <?php
+                    }
+                }
+        }
+                    ?>
+
+        <div class="headerFilter">Filter by date</div>               
                 <div>
                     <input type="date" name="filterDateFrom" class="inputFilter" <?php if(isset($_POST["filterDateFrom"])){$dateFrom = $_POST["filterDateFrom"]; echo" value='$dateFrom'"; } ?> > From
                 </div>
@@ -60,18 +108,12 @@ $run = mysqli_query($connection, $sql);
                 <div>
                     <input type="number" name="timeTo" class="inputFilter" min="0" <?php if(isset($_POST["timeTo"])){$timeTo = $_POST["timeTo"]; echo" value='$timeTo'"; } ?> > To
                 </div>
-                    
-                
-            <?php
-            } else {
-            echo "You don't have any records";
-            }
-        ?>
         <br>
         <input type = "submit" class = "submitFilter" name = "filter" value = "Filter">
     </form>
 </div>
 <div class="vysledky">   
+
 <?php
 
 //printing from table zaznamy
@@ -117,7 +159,20 @@ if(isset($_POST["languages"])){
                 $sql = $sql . " AND CasMin < $timeTo";
             } 
         }
-
+        if (isset($_POST["categories"])) {
+            $filterCategory = [];
+            $filterCategory = $_POST["categories"];
+            $IDfilterCategory = [];
+            $index = 0;
+            foreach ($filterCategory as $oneCategory) {
+                $key = array_search($oneCategory, $nameList);
+                $IDfilterCategory[$index] = $idList[$key];
+                $index++;    
+            }
+            foreach ($IDfilterCategory as $oneID) {
+                $sql = $sql . " AND ID_Kategorie IN ('$oneID')";
+            }
+        }
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()) {
             $DBzaznamID = $row["ID_zaznamy"];
@@ -127,10 +182,23 @@ if(isset($_POST["languages"])){
             }
             else{
                 $shortcut = $row["Poznamka"];
-            }   
+            }  
+
+            $ID_Kategorie = $row["ID_Kategorie"];
+            $key = array_search($ID_Kategorie, $idList);
+            if($ID_Kategorie != ""){
+                $tableCategory = $nameList[$key];
+            }else{
+                $tableCategory = $row["ID_Kategorie"];
+            }
+            
             echo "<tr class = 'zaznamy tableRow'>";
             echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
-                    <td class = 'small'>".$row["ID_Kategorie"]."</td> 
+
+
+                    <td class = 'small'>".$tableCategory."</td>                                         
+                    
+
                     <td class = 'small'>".$row["Datum"]."</td> 
                     <td class = 'small'>".$row["ProgramJazyk"]."</td> 
                     <td class = 'small'>".$row["CasMin"]."</td> 
@@ -186,6 +254,21 @@ if(isset($_POST["languages"])){
             $sql = $sql . " AND CasMin < $timeTo";
         } 
     }
+    if (isset($_POST["categories"])) {
+        $filterCategory = [];
+        $filterCategory = $_POST["categories"];
+        $IDfilterCategory = [];
+        $index = 0;
+        
+        foreach ($filterCategory as $oneCategory) {
+            $key = array_search($oneCategory, $nameList);
+            $IDfilterCategory[$index] = $idList[$key];
+            $index++;    
+        }
+        foreach ($IDfilterCategory as $oneID) {
+            $sql = $sql . " AND ID_Kategorie IN ('$oneID')";
+        }
+    }
     $result = $connection->query($sql);
     echo "<table>";
     echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Category</b></td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
@@ -201,9 +284,21 @@ if(isset($_POST["languages"])){
         else{
             $shortcut = $row["Poznamka"];
         }   
+
+        $ID_Kategorie = $row["ID_Kategorie"];
+            if(count($idList) != 0){
+                $key = array_search($ID_Kategorie, $idList);
+            }
+            
+            if($ID_Kategorie != ""){
+                $tableCategory = $nameList[$key];
+            }else{
+                $tableCategory = $row["ID_Kategorie"];
+            }
+
         echo "<tr class = 'zaznamy tableRow'>";
         echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
-                <td class = 'small'>".$row["ID_Kategorie"]."</td> 
+                <td class = 'small'>".$tableCategory."</td>    
                 <td class = 'small'>".$row["Datum"]."</td> 
                 <td class = 'small'>".$row["ProgramJazyk"]."</td> 
                 <td class = 'small'>".$row["CasMin"]."</td> 
@@ -244,10 +339,16 @@ $connection->close();
                     <div class="modal-body">
                         <input class = "input" type="hidden" name="recordID" id="ID_zaznamy">
                         
-
                         <div class="modalPart">
                             <label> Category</label>
-                            <input  class = "input" type="t" name="date" id="Category" class="" placeholder="CATEGORY">
+                            <select class = "input" type="t" name="category" id="Category" class="">
+                                <?php 
+                                    foreach($nameList as $oneName){
+                                        $key = array_search($oneName, $nameList);
+                                        echo "<option value='$idList[$key]' style='color: $colorList[$key]'>$oneName</option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
 
                         <div class="modalPart">
@@ -258,15 +359,11 @@ $connection->close();
                         <div class="modalPart">
                             <label> Language </label>
                             <select  class = "input" name="language" id="ProgramJazyk" class="" placeholder="Select language">
-                              <option value="C++">C++</option>
-                              <option value="C">C</option>
-                              <option value="C#">C#</option>
-                              <option value="Python">Python</option>
-                              <option value="HTML">HTML</option>
-                              <option value="CSS">CSS</option>
-                              <option value="SQL">SQL</option>
-                              <option value="Rust">Rust</option>
-                              <option value="JavaScript">JavaScript</option>
+                              <?php                                                         
+                                  foreach($languages as $lang){
+                                  echo "<option value='$lang'>$lang</option>";
+                                  }                                                          
+                                ?>
                           </select>
                         </div>
 

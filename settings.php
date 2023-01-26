@@ -45,15 +45,19 @@ while ($row = $result->fetch_assoc()) {
         <div>Add Category</div>
         <div><button type='button' class='setCategory' id='setCategory' data-toggle='modal2' data-target='#studentaddmodal2'>Add</button></div>
         <div>Your Categories</div>
-        <select>
-        <?php 
-        foreach($nameList as $oneName){
-            $key = array_search($oneName, $nameList);
+        <form action="addCategory.php" method="POST">
+            <select name="deleteCategory">
+            <?php 
+            foreach($nameList as $oneName){
+                $key = array_search($oneName, $nameList);
 
-            echo "<option style='color: $colorList[$key]'>$oneName - $popisList[$key]</option>";
-        }
-        ?>
-        </select>
+                echo "<option style='color: $colorList[$key]'>$oneName - $popisList[$key]</option>";
+            }
+            ?>
+            </select>
+            <button type="submit" name="addCategoryDelete" class="addCategoryDelete">Delete category</button>
+        </form>
+        
     </div>
 
 
@@ -148,6 +152,7 @@ while ($row = $result->fetch_assoc()) {
                     <div class="modal-footer">
                         <button type="button" class="submitProf" data-dismiss="modal">Close</button>
                         <button type="submit" name="addCategorySubmit" class="submitProf">Save</button>
+                        
                     </div>
                 </form>
             </div>
