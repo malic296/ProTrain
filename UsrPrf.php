@@ -58,7 +58,8 @@ $mail->send();
 $cookie_name = "user".rand(1,999999);
 $cookie_value = true;
 $_SESSION["cookieVer"] = $cookie_name;
-setcookie($cookie_name, $cookie_value,time() + 30);
+setcookie($cookie_name, $cookie_value,time() + 120);
+
 ?>
 <div class="profile">
     <i class= "fa-solid fa-circle-user profilePic"></i>

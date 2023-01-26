@@ -79,7 +79,7 @@ if(isset($_POST["languages"])){
     $langChecked = [];
     $langChecked = $_POST["languages"];
     echo "<table>";
-    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
+    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Category</b></td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
     foreach($langChecked as $oneLang){
         if (isset($_POST["filterDateFrom"]) and isset($_POST["filterDateTo"])){
             $dateFrom = $_POST["filterDateFrom"];
@@ -130,6 +130,7 @@ if(isset($_POST["languages"])){
             }   
             echo "<tr class = 'zaznamy tableRow'>";
             echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
+                    <td class = 'small'>".$row["ID_Kategorie"]."</td> 
                     <td class = 'small'>".$row["Datum"]."</td> 
                     <td class = 'small'>".$row["ProgramJazyk"]."</td> 
                     <td class = 'small'>".$row["CasMin"]."</td> 
@@ -187,7 +188,7 @@ if(isset($_POST["languages"])){
     }
     $result = $connection->query($sql);
     echo "<table>";
-    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
+    echo "<tr class = 'zaznamy top'><td class = 'first'>id</td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Category</b></td><td class = 'small'><b><i class='fa-solid fa-calendar'></i>Date</b></td><td class = 'small'><b><i class='fa-solid fa-code'></i>Language</b></td><td class = 'small'><b><i class='fa-solid fa-clock'></i>Spent Time</b></td><td class = 'small'><b><i class='fa-solid fa-star'></i>Rating</b></td><td><b><i class='fa-solid fa-comment-dots'></i>Note</b></td><td class = 'last'><b><i class='fa-solid fa-wrench'></i>Actions</b></td'></tr>";
 
     if ($result->num_rows > 0) {
         
@@ -202,6 +203,7 @@ if(isset($_POST["languages"])){
         }   
         echo "<tr class = 'zaznamy tableRow'>";
         echo "  <td class = 'first'>".$row["ID_zaznamy"]."</td> 
+                <td class = 'small'>".$row["ID_Kategorie"]."</td> 
                 <td class = 'small'>".$row["Datum"]."</td> 
                 <td class = 'small'>".$row["ProgramJazyk"]."</td> 
                 <td class = 'small'>".$row["CasMin"]."</td> 
@@ -242,6 +244,12 @@ $connection->close();
                     <div class="modal-body">
                         <input class = "input" type="hidden" name="recordID" id="ID_zaznamy">
                         
+
+                        <div class="modalPart">
+                            <label> Category</label>
+                            <input  class = "input" type="t" name="date" id="Category" class="" placeholder="CATEGORY">
+                        </div>
+
                         <div class="modalPart">
                             <label> Date</label>
                             <input  class = "input" type="date" name="date" id="Datum" class="" placeholder="Enter date">
@@ -309,11 +317,13 @@ $connection->close();
                 console.log(data);
 
                 $('#ID_zaznamy').val(data[0]);
-                $('#Datum').val(data[1]);
-                $('#ProgramJazyk').val(data[2]);
-                $('#CasMin').val(data[3]);
-                $('#Hodnoceni').val(data[4]);
-                $('#Poznamka').val(data[5]);
+                $('#Category').val(data[1]);
+                $('#Datum').val(data[2]);
+                $('#ProgramJazyk').val(data[3]);
+                $('#CasMin').val(data[4]);
+                $('#Hodnoceni').val(data[5]);
+                $('#Poznamka').val(data[6]);
             });
         });
     </script>
+

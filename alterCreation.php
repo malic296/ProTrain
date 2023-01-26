@@ -35,10 +35,14 @@ if($_SESSION["CODE"] == $_POST["verificationCode"]){
         <?php
     }
     else{
+        
         header("Location:app.php");
     }
 }
 else{
-    header("Location:app.php");
+    echo '<script type="text/javascript">
+         window.onload = function () { alert("Incorrect code"); } 
+        </script>';
+    //header("Location:app.php");
 }
 ?>

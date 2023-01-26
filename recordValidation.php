@@ -17,6 +17,8 @@ function get_input($data) {
   $rating = get_input($_POST["rating"]);
   $note = get_input($_POST["note"]);
   $lang = get_input($_POST["jazyk"]); 
+  
+  
 
 
   include("DBconnection.php");
@@ -25,9 +27,19 @@ function get_input($data) {
   if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
   }
+
+
+  if(isset($_POST["category"])){
+    $category = get_input($_POST["category"]); 
+    $sql = "INSERT INTO zaznamy (ID_users,ID_Kategorie, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
+    VALUES ($userID, $category, '$date', '$lang', $time, $rating, '$note')"; 
+  }else{
+    $sql = "INSERT INTO zaznamy (ID_users, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
+    VALUES ($userID, '$date', '$lang', $time, $rating, '$note')"; 
+  }
+
+
   
-  $sql = "INSERT INTO zaznamy (ID_users, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka)
-  VALUES ($userID, '$date', '$lang', $time, $rating, '$note')";
 
   if ($connection->query($sql) === TRUE) {
     echo "New record created successfully";

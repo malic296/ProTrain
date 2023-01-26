@@ -72,7 +72,6 @@ if(isset($_POST["save"])){
 
 $connection->close();
 
-
 ?>
 
 <div class="all">   
