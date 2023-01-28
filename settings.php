@@ -9,7 +9,7 @@ $result = $result->fetch_assoc();
 $dailyGoal = $result["dailyGoal"];
 
 
-$sql = "SELECT * from Kategorie WHERE ID_users = '$DBuserID';";
+$sql = "SELECT * from kategorie WHERE ID_users = '$DBuserID';";
 $result = $connection->query($sql);
 $nameList = [];
 $colorList = [];

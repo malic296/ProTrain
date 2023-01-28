@@ -12,7 +12,7 @@ if(isset($_POST['addCategorySubmit']))
 
 
 
-    $query = "INSERT INTO Kategorie (ID_Users, nazev, barva, popis) VALUES ($id, '$nameCategory', '$colorCategory', '$descriptionCategory'); ";
+    $query = "INSERT INTO kategorie (ID_Users, nazev, barva, popis) VALUES ($id, '$nameCategory', '$colorCategory', '$descriptionCategory'); ";
     $query_run = mysqli_query($connection, $query);
     
     if($query_run)
@@ -27,7 +27,7 @@ if(isset($_POST['addCategorySubmit']))
 } elseif (isset($_POST['addCategoryDelete'])) {$DBuserID = $_SESSION["userID"];
     $id = $_SESSION["userID"];
     $nameCategory = $_POST['deleteCategory'];
-    $sql = "SELECT * from Kategorie WHERE ID_users = '$DBuserID';";
+    $sql = "SELECT * from kategorie WHERE ID_users = '$DBuserID';";
     $result = $connection->query($sql);
 
     $idList = [];
@@ -46,7 +46,7 @@ if(isset($_POST['addCategorySubmit']))
     $idCategory = $idList[$key];
 
     $sql = mysqli_query($connection, "UPDATE zaznamy SET ID_Kategorie = NULL where ID_Kategorie = '$idCategory'");
-    $sql = mysqli_query($connection, "DELETE FROM Kategorie WHERE ID_Kategorie = '$idCategory'");
+    $sql = mysqli_query($connection, "DELETE FROM kategorie WHERE ID_Kategorie = '$idCategory'");
     header("Location:app.php");
 }
 ?>

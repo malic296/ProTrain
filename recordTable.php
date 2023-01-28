@@ -5,13 +5,14 @@ if ($connection->connect_error) {
 }
 
 $DBuserID = $_SESSION["userID"];
-$sql = "SELECT * from Kategorie WHERE ID_users = '$DBuserID';";
+$sql = "SELECT * from kategorie WHERE ID_users = '$DBuserID';";
 $result = $connection->query($sql);
 $nameList = [];
 $colorList = [];
 $popisList = [];
 $idList = [];
 $index = 0;
+
 while ($row = $result->fetch_assoc()) {
     $idList[$index] = $row["ID_Kategorie"];
     $nameList[$index] = $row["nazev"];
@@ -19,6 +20,7 @@ while ($row = $result->fetch_assoc()) {
     $popisList[$index] = $row["popis"];
     $index++;
 }
+
 
 
 $sql = "SELECT DISTINCT ProgramJazyk from zaznamy where ID_users = $DBuserID";
