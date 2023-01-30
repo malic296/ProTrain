@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
     $DBuserPassword = $row["password"];
   }
 } else {
-    header("Location:login.php?error=1");
+    header("Location:index.php?error=1");
 }
 $connection->close();
 
@@ -43,6 +43,6 @@ if ($secret == $DBuserPassword) {
     header("Location:app.php");
     exit();
 } else {
-    header("Location:login.php?error=1");
+    header("Location:index.php?error=1");
 }
   ?>

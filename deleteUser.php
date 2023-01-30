@@ -10,7 +10,7 @@ if(isset($_POST['deleteProfile']) ) {
     $sql = mysqli_query($connection, "DELETE FROM users WHERE ID_users = '$id'");
     if ($sql) {  
         $connection->close();
-        header('location:login.php');  
+        header('location:index.php');  
     }else{  
         echo "Error: ".mysqli_error($connection);  
     }  

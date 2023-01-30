@@ -14,6 +14,7 @@ session_start();
   <link rel='stylesheet' type='text/css' media='screen' href='app.css'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/x-icon" href="logo.ico">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
   <script src="https://kit.fontawesome.com/9d291e9016.js" crossorigin="anonymous"></script>
@@ -63,7 +64,7 @@ if ($result->num_rows > 0) {
     $DBDailyGoal = $row["dailyGoal"];
   }
 } else {
-    header("Location:login.php");
+    header("Location:index.php");
   die("This user does not exist");
 }
 if(isset($_POST["save"])){
@@ -93,7 +94,7 @@ $connection->close();
         
       </div>
       <div class="seg3">
-          <div class = "test1"><a href="login.php">
+          <div class = "test1"><a href="index.php">
             Log Out</a>
           </div>
           <button type = "submit" class = "test2" name = settings>

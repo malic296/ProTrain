@@ -11,11 +11,18 @@ if(isset($_POST['updatedata']))
     $spentTime = $_POST['spentTime'];
     $rating = $_POST['rating'];
     $note = $_POST['note'];
-    $category = $_POST['category'];
-
-    $query = "UPDATE zaznamy SET ID_Kategorie='$category', Datum='$date', ProgramJazyk='$language', CasMin='$spentTime', Hodnoceni='$rating', Poznamka=' $note' WHERE ID_zaznamy='$id'; ";
-    $query_run = mysqli_query($connection, $query);
+    $DBuserID = $_SESSION["userID"];
     
+    if(isset($_POST['category'])){
+        $category = $_POST['category'];
+        $query = "UPDATE zaznamy SET ID_Kategorie='$category', Datum='$date', ProgramJazyk='$language', CasMin='$spentTime', Hodnoceni='$rating', Poznamka=' $note' WHERE ID_zaznamy='$id' and ID_users = '$DBuserID'";
+    }else{
+        $query = "UPDATE zaznamy SET Datum='$date', ProgramJazyk='$language', CasMin='$spentTime', Hodnoceni='$rating', Poznamka=' $note' WHERE ID_zaznamy='$id' and ID_users = '$DBuserID'; ";
+    }
+        
+    
+    $query_run = mysqli_query($connection, $query);
+
     if($query_run)
     {
         echo '<script> alert("Data Updated"); </script>';

@@ -10,6 +10,7 @@ session_start();
     <title>ProTrain Registration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lobster&display=swap" rel="stylesheet">
     <script src='main.js'></script>
 </head>
@@ -30,7 +31,7 @@ session_start();
     <div class="signup">
             <div class="login_signup">
                 <div class="login_choose">
-                    <a href="login.php"><input type="submit" value="Login" class = "choosing_but"></a>
+                    <a href="index.php"><input type="submit" value="Login" class = "choosing_but"></a>
                 </div>
                 <div class="signup_choose">
                     <a href="signup.php"><input type="submit" value="Sign Up" class = "current_page"></a>
