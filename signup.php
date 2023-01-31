@@ -42,7 +42,7 @@ session_start();
                     <label for="login" class = "signup_label_uname"><span class = "signup_username">Username:</span></label>
                 <div class="signup_uname"><input id="login" name="loginRegister" type="text" class = "text" required> </div>
                     <label for="email" class = "signup_label_email"><span class = "signup_email_span">E-mail:</span></label>
-                <div class="signup_email"><input id="email" name="emailRegister" type="text" class = "text" required> </div>
+                <div class="signup_email"><input id="email" name="emailRegister" type="email" class = "text" required> </div>
                     <label for="password" class = "signup_label_passwd"><span class = "signup-password">Password:</span></label>
                 <div class="signup_passwd"><input id="password" name="passwordRegister" type="password" class = "text" required></div>
             </div>
