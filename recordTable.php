@@ -425,4 +425,3 @@ $connection->close();
             });
         });
     </script>
-

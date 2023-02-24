@@ -91,6 +91,7 @@ $connection->close();
           <div class="section" id = "tab2"><i class="fa-solid fa-plus"></i><input type = "submit" name = "newRec" id = "fill2" class = "tab" value = "Create new"></div>      
           <div class="section" id = "tab3"><i class="fa-solid fa-table-list"></i><input type = "submit" name = "allRecs" id ="fill3" class = "tab" value = "Show records"></div>
           <div class="section" id = "tab4"><i class="fa-solid fa-user"></i><input type = "submit" name = "profile" id ="fill4" class = "tab" value = "Profile"></div> 
+          <div class="section" id = "tab5"><i class="fa-solid fa-user"></i><input type = "submit" name = "import" id ="fill5" class = "tab" value = "Import/Export"></div> 
         
       </div>
       <div class="seg3">
