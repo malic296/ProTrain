@@ -941,6 +941,37 @@ h1{
     border-radius: 50%;
   }
 
+/*IMPORT/EXPORT------------------------------------------------------------------------------------------------------------*/
+.import-export{
+    height: 80%;
+}
+.export,.import{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.export{
+    color: black;
+}
+.export-btn{
+    color: black;
+    background-color: green;
+    border:2px solid black;
+}
+.import{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.import-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /*pop up edit*/  
 

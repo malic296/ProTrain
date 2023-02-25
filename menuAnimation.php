@@ -68,7 +68,7 @@
                
               </style>";
       }
-      else if(isset($_POST["import"]) || isset($_POST["download"])){
+      else if(isset($_POST["import"]) || isset($_POST["upload"])){
         include "import.php";
       }
       else if(isset($_POST["settings"])){
