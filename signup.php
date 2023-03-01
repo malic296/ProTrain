@@ -39,6 +39,13 @@ session_start();
             </div>
         <form action="regValidation.php" method="post" class = "form_signup">
             <div class="signup_texty">
+
+                <span class = "signup_username">Firstname:</span>
+                <div class="signup_uname"><input id="firstname" name="firstRegister" type="text" class = "text" required></div>
+
+                <span class = "signup_username">Lastname:</span>
+                <div class="signup_uname"><input id="lastname" name="lastRegister" type="text" class = "text" required></div>
+
                     <label for="login" class = "signup_label_uname"><span class = "signup_username">Username:</span></label>
                 <div class="signup_uname"><input id="login" name="loginRegister" type="text" class = "text" required> </div>
                     <label for="email" class = "signup_label_email"><span class = "signup_email_span">E-mail:</span></label>

@@ -26,6 +26,8 @@ $smtpPassword = "lkhxfcwneeqdsuyh";
 $fromName = "ProTrain";
 
 //register
+$firstname = get_input($_POST["firstRegister"]);
+$lastname = get_input($_POST["lastRegister"]);
 $login = get_input($_POST["loginRegister"]);
 $password = get_input($_POST["passwordRegister"]);
 $email = get_input($_POST["emailRegister"]);
@@ -49,10 +51,9 @@ if ($connectDB->connect_error) {
     header("Location:signup.php?error=1");
   } else {
     //vytvoreni uzivatele a zapsani do databaze
-    $stmt = $connectDB->prepare("insert into users(login, password, email) values(?, ?, ?)");
-    $stmt->bind_param("sss", $login, $secret, $email);
+    $stmt = $connectDB->prepare("insert into users(firstname, lastname, login, password, email) values(?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss",$firstname, $lastname, $login, $secret, $email);
     $stmt->execute();
-    echo "succes reg";
     $stmt->close();
     $connectDB->close();
 
