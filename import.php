@@ -39,10 +39,52 @@ fclose($fp);
 
     <div class="import">
 
-        <form method = "post" class = "import-form">
-            <input type="file" id="myFile" name="filename" required>
+        <form method = "post" class = "import-form" enctype="multipart/form-data">
+            <input type="file" id="file" name="file" required>
             <input type = "submit" value = "Odeslat" name = "upload">
         </form>
 
     </div>
 </div>
+
+<?php
+if(isset($_POST["upload"])){
+    include("DBconnection.php");
+    $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+    
+    // Validate whether selected file is a CSV file
+    if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
+        
+        // If the file is uploaded
+        if(is_uploaded_file($_FILES['file']['tmp_name'])){
+            
+            // Open uploaded CSV file with read-only mode
+            $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
+            
+            // Skip the first line
+            fgetcsv($csvFile);
+            
+            // Parse data from CSV file line by line
+            while(($line = fgetcsv($csvFile)) !== FALSE){
+                // Get row data
+                $dataString = $line[0];
+                $dataList = explode(",", $dataString);
+                if($dataList[2] != ""){
+                    $sql = "INSERT INTO zaznamy (ID_users, ID_Kategorie, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka) VALUES ($dataList[1], $dataList[2], '$dataList[3]', '$dataList[4]', $dataList[5], '$dataList[6]', '$dataList[7]')";
+                }else{
+                    $sql = "INSERT INTO zaznamy (ID_users, Datum, ProgramJazyk, CasMin, Hodnoceni, Poznamka) VALUES ($dataList[1], '$dataList[3]', '$dataList[4]', $dataList[5], '$dataList[6]', '$dataList[7]')";
+                }
+                
+                if ($connection->query($sql) === TRUE) {
+                   
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $connection->error;
+                  }
+      
+            }
+        }
+    }
+    header("Location:app.php");
+}
+
+?>
