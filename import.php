@@ -29,20 +29,26 @@ fclose($fp);
 
 
 <div class="import-export">
+    <h2>Exportujte si svá uživatelská data</h2>
     <div class="export">
-
         <a class = "export-btn" href = '<?php echo $cesta_k_souboru; ?>' download>Export</a>
 
     </div>
 
 
-
+    <h2>Importujte si svá uživatelská data</h2>
     <div class="import">
 
         <form method = "post" class = "import-form" enctype="multipart/form-data">
-            <input type="file" id="file" name="file" required>
-            <input type = "submit" value = "Odeslat" name = "upload">
+            <input type="file" class = "input-file" id="file" name="file" required>
+            <input type = "submit" class = "odeslat-input" value = "Import" name = "upload">
         </form>
+
+    </div>
+
+    <h2>Stáhnout vzorový soubor</h2>
+    <div class="vzor-div">
+        <a class = "vzor" href = '<?php echo 'user-files/vzor.csv'; ?>' download>Vzor</a>
 
     </div>
 </div>
